@@ -15,4 +15,4 @@ Custom flake8 rules
 * Max number of positional arguments to function
     * In definition or invocation
 * Enforce calling await on async methods
-* Tasks require names
+    * I would like to do this - but I don't know how to identify if a method is async
