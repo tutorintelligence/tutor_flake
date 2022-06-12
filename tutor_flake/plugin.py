@@ -3,6 +3,7 @@ from typing import Generator, List
 
 from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
+from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
 
 
@@ -29,4 +30,8 @@ class CustomVisitor(ast.NodeVisitor):
 
     def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
         self.errors.extend(DataclassRenamed.check(node))
+        self.generic_visit(node)
+
+    def visit_Call(self, node: ast.Call) -> None:
+        self.errors.extend(CreateTaskRequireName.check(node))
         self.generic_visit(node)
