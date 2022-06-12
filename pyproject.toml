@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tutor_flake"
+version = "0.1.0"
+description = ""
+authors = ["Jack Strang <jack@tutorintelligence.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+black = "^22.3.0"
+mypy = "^0.961"
+astpretty = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+style = "poetry_scripts:style"
+print_ast = "poetry_scripts:print_ast"
