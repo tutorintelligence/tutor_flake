@@ -25,7 +25,7 @@ print_ast = "poetry_scripts:print_ast"
 
 [tool.semantic_release]
 version_variable = [
-    "protocols/__init__.py:__version__",
+    "tutor_flake/__init__.py:__version__",
     "pyproject.toml:version"
 ]
 branch = "main"
