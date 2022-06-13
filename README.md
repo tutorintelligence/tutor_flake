@@ -17,3 +17,17 @@ Custom flake8 rules
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
 * Forbid annotate class variables that are then set in the init function
+
+## Installation and Configuration
+
+In a pyproject.toml, can install like this:
+```
+tutor-flake = {git = "ssh://git@github.com/tutorintelligence/tutor_flake.git", rev = "v0.2.0"}
+```
+
+To configure, in `setup.cfg`
+```
+[flake8:local-plugins]
+extension = 
+    TUTOR = tutor_flake.plugin:TutorIntelligenceFlakePlugin
+```
