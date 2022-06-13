@@ -16,3 +16,4 @@ Custom flake8 rules
     * In definition or invocation
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
+* Forbid annotate class variables that are then set in the init function
