@@ -1,5 +1,3 @@
-
-
 async def example_async(x: int, y: float) -> bool:
     return True
 
