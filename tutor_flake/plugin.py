@@ -1,10 +1,11 @@
 import ast
-from typing import Generator, List
+from typing import Any, Generator, List
 
 from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
+from tutor_flake.rules.no_sideeffects import NoSideeffects
 
 
 class TutorIntelligenceFlakePlugin:
@@ -23,6 +24,10 @@ class TutorIntelligenceFlakePlugin:
 class CustomVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.errors: List[Flake8Error] = []
+
+    def visit_Module(self, node: ast.Module) -> Any:
+        self.errors.extend(NoSideeffects.check(node))
+        self.generic_visit(node)
 
     def visit_ClassDef(self, node: ast.ClassDef) -> None:
         self.errors.extend(DataclassMissingAnnotations.check(node))
