@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2022-06-27)
+### Feature
+* Prevent expressions in main body ([`7d6ea8d`](https://github.com/tutorintelligence/tutor_flake/commit/7d6ea8d7bb6e6b89f9fcca7862c82dfd4085f2e9))
+
 ## v0.2.0 (2022-06-13)
 ### Feature
 * Setup github and workflow ([`7626479`](https://github.com/tutorintelligence/tutor_flake/commit/762647920cd3ebcff6394950fdab30598b1924a4))
