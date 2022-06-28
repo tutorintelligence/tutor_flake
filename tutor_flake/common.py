@@ -1,5 +1,5 @@
 import ast
-from typing import NamedTuple
+from typing import List, NamedTuple, Union
 
 
 class Flake8Error(NamedTuple):
@@ -25,3 +25,11 @@ def check_name_or_attribute(node: ast.AST, *name_or_attr: str) -> bool:
 
 def has_keyword(call: ast.Call, keyword: str) -> bool:
     return any(kw.arg == keyword for kw in call.keywords)
+
+
+def get_targets(
+    assignment: Union[ast.AnnAssign, ast.Assign, ast.AugAssign]
+) -> List[ast.expr]:
+    if isinstance(assignment, ast.Assign):
+        return assignment.targets
+    return [assignment.target]

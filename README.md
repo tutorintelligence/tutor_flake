@@ -11,6 +11,8 @@ Custom flake8 rules
 * TUTOR200 - asyncio.create_task requires the name parameter
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUTOR400 - detect strings that were likely meant to be f-strings
+* TUTOR500 - instance variables set in `__init__` cannot overlap with class variables
+    * TUTOR501 - class variables must be defined before all functions
 
 ## Future Ideas
 
