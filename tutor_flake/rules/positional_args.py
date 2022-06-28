@@ -38,3 +38,18 @@ class MaxPostionalArgsInFunctionDef:
         elif len(func.args.args) > 0:
             return func.args.args[0]
         return None
+
+
+class MaxPositionalArgsInInvocation:
+    @classmethod
+    def check(
+        cls, invocation: ast.Call, max_positional: int
+    ) -> Generator[Flake8Error, None, None]:
+        if len(invocation.args) > max_positional:
+            yield Flake8Error.construct(
+                invocation,
+                "620",
+                f"function called with {len(invocation.args)} positional arguments,"
+                f" a max of {max_positional} is permitted",
+                cls,
+            )

@@ -15,15 +15,12 @@ Custom flake8 rules
     * TUTOR501 - class variables must be defined before all functions
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
-    * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`) TODO: NOT YET IMPLEMETED
+    * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
 
 ## Future Ideas
 
-* Max number of positional arguments to function
-    * In definition or invocation
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
-* Forbid annotate class variables that are then set in the init function
 
 ## Installation and Configuration
 

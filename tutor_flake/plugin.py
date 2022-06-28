@@ -11,7 +11,10 @@ from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.classvar import ClassvarOrderingAndInstanceOverlap
 from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
-from tutor_flake.rules.positional_args import MaxPostionalArgsInFunctionDef
+from tutor_flake.rules.positional_args import (
+    MaxPositionalArgsInInvocation,
+    MaxPostionalArgsInFunctionDef,
+)
 from tutor_flake.rules.string import NoBracketInString
 
 
@@ -35,7 +38,7 @@ class TutorFlakeConfig:
             short_option_name="-maxinvocpos",
             long_option_name="--max_invocation_positional_args",
             type=int,
-            default=3,
+            default=4,
             help="The max number of positional arguments a function can be invoked with",
             required=False,
             parse_from_config=True,
@@ -92,6 +95,11 @@ class CustomVisitor(ast.NodeVisitor):
 
     def visit_Call(self, node: ast.Call) -> None:
         self.errors.extend(CreateTaskRequireName.check(node))
+        self.errors.extend(
+            MaxPositionalArgsInInvocation.check(
+                node, self.config.max_invocation_positional_args
+            )
+        )
         self.generic_visit(node)
 
     def visit_Constant(self, node: ast.Constant) -> Any:
