@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2022-06-28)
+### Feature
+* False f-string detector rule ([`7ebe3eb`](https://github.com/tutorintelligence/tutor_flake/commit/7ebe3eb0a5d4abc581968eca3c41c48af109345a))
+
 ## v0.3.1 (2022-06-28)
 ### Fix
 * Frozen dataclasses also require classvar ([`04897eb`](https://github.com/tutorintelligence/tutor_flake/commit/04897ebcae67bb57339a6da42c66b0a2b297c056))
