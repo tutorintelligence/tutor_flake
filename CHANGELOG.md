@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2022-06-28)
+### Fix
+* Frozen dataclasses also require classvar ([`04897eb`](https://github.com/tutorintelligence/tutor_flake/commit/04897ebcae67bb57339a6da42c66b0a2b297c056))
+
 ## v0.3.0 (2022-06-27)
 ### Feature
 * Prevent expressions in main body ([`7d6ea8d`](https://github.com/tutorintelligence/tutor_flake/commit/7d6ea8d7bb6e6b89f9fcca7862c82dfd4085f2e9))
