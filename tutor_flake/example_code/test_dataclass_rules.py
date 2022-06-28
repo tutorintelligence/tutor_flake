@@ -31,6 +31,11 @@ class Example2:
     a = 3  # noqa: TUTOR100
 
 
-@dc
+@dataclass(frozen=True)
 class Example3:
+    a = 4  # noqa: TUTOR100
+
+
+@dc
+class Example4:
     a = 3

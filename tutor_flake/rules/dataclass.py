@@ -31,6 +31,9 @@ class DataclassRenamed:
 
 def is_dataclass(node: ast.ClassDef) -> bool:
     for decorator in node.decorator_list:
-        if check_name_or_attribute(decorator, "dataclass"):
+        if check_name_or_attribute(decorator, "dataclass") or (
+            isinstance(decorator, ast.Call)
+            and check_name_or_attribute(decorator.func, "dataclass")
+        ):
             return True
     return False
