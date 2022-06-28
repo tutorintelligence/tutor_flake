@@ -5,6 +5,7 @@ from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
+from tutor_flake.rules.no_bracket_in_string import NoBracketInString
 from tutor_flake.rules.no_sideeffects import NoSideeffects
 
 
@@ -39,4 +40,8 @@ class CustomVisitor(ast.NodeVisitor):
 
     def visit_Call(self, node: ast.Call) -> None:
         self.errors.extend(CreateTaskRequireName.check(node))
+        self.generic_visit(node)
+
+    def visit_Constant(self, node: ast.Constant) -> Any:
+        self.errors.extend(NoBracketInString.check(node))
         self.generic_visit(node)

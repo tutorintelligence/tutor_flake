@@ -10,6 +10,7 @@ Custom flake8 rules
     * Notes: this is meant to act against the major case of false negatives for TUTOR100
 * TUTOR200 - asyncio.create_task requires the name parameter
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
+* TUTOR400 - detect strings that were likely meant to be f-strings
 
 ## Future Ideas
 
@@ -18,7 +19,6 @@ Custom flake8 rules
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
 * Forbid annotate class variables that are then set in the init function
-* Closed brackets in string should be f-string
 
 ## Installation and Configuration
 
