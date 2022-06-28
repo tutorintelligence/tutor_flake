@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.0 (2022-06-28)
+### Feature
+* Max number of positional arguments in function definition ([`ff68636`](https://github.com/tutorintelligence/tutor_flake/commit/ff686367c57d661f31d8aeb6b7909385075cd2e1))
+
 ## v0.5.0 (2022-06-28)
 ### Feature
 * Instance variables and class variables should not overlap ([`1055bde`](https://github.com/tutorintelligence/tutor_flake/commit/1055bde4f8c96bcb47ef55bfe7ea4d2e06a90e32))
