@@ -13,6 +13,9 @@ Custom flake8 rules
 * TUTOR400 - detect strings that were likely meant to be f-strings
 * TUTOR500 - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
+* TUTOR6
+    * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
+    * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`) TODO: NOT YET IMPLEMETED
 
 ## Future Ideas
 
