@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.0 (2022-06-28)
+### Feature
+* Configure max number of possitional arguments ([`281129d`](https://github.com/tutorintelligence/tutor_flake/commit/281129da5db6a2d66975e95d5681c7041ecdf165))
+
 ## v0.6.0 (2022-06-28)
 ### Feature
 * Max number of positional arguments in function definition ([`ff68636`](https://github.com/tutorintelligence/tutor_flake/commit/ff686367c57d661f31d8aeb6b7909385075cd2e1))
