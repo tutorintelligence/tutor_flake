@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2022-06-28)
+### Feature
+* Instance variables and class variables should not overlap ([`1055bde`](https://github.com/tutorintelligence/tutor_flake/commit/1055bde4f8c96bcb47ef55bfe7ea4d2e06a90e32))
+
 ## v0.4.0 (2022-06-28)
 ### Feature
 * False f-string detector rule ([`7ebe3eb`](https://github.com/tutorintelligence/tutor_flake/commit/7ebe3eb0a5d4abc581968eca3c41c48af109345a))
