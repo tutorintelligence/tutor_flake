@@ -11,6 +11,11 @@ from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.classvar import ClassvarOrderingAndInstanceOverlap
 from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
+from tutor_flake.rules.os_path import (
+    NoFromOSPathImports,
+    NoOSPathAttrs,
+    NoOSPathImports,
+)
 from tutor_flake.rules.positional_args import (
     MaxPositionalArgsInInvocation,
     MaxPostionalArgsInFunctionDef,
@@ -89,8 +94,13 @@ class CustomVisitor(ast.NodeVisitor):
         self.errors.extend(ClassvarOrderingAndInstanceOverlap.check(node))
         self.generic_visit(node)
 
+    def visit_Import(self, node: ast.Import) -> Any:
+        self.errors.extend(NoOSPathImports.check(node))
+        self.generic_visit(node)
+
     def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
         self.errors.extend(DataclassRenamed.check(node))
+        self.errors.extend(NoFromOSPathImports.check(node))
         self.generic_visit(node)
 
     def visit_Call(self, node: ast.Call) -> None:
@@ -112,4 +122,8 @@ class CustomVisitor(ast.NodeVisitor):
                 node, self.config.max_definition_positional_args
             )
         )
+        self.generic_visit(node)
+
+    def visit_Attribute(self, node: ast.Attribute) -> Any:
+        self.errors.extend(NoOSPathAttrs.check(node))
         self.generic_visit(node)
