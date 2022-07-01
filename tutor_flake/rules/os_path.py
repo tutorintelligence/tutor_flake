@@ -26,7 +26,9 @@ class NoFromOSPathImports:
         import_path_from_os_cond = node.module == "os" and any(
             [name.name == "path" for name in node.names]
         )
-        import_func_from_os_path_cond = "os.path" in node.module
+        import_func_from_os_path_cond = (
+            isinstance(node.module, str) and "os.path" in node.module
+        )
         if import_func_from_os_path_cond or import_path_from_os_cond:
             yield Flake8Error.construct(
                 node,
