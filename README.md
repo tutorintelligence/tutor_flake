@@ -16,7 +16,9 @@ Custom flake8 rules
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
-    * TUTOR700-720 - Prevent use of `os.path` functions and any corresponding imports
+    * TUTOR700 - Prevent `os.path.<func>()` function calls
+    * TUTOR710 - Prevent `from os import path`
+    * TUTOR720 - Prevent `import os.path`
 
 ## Future Ideas
 
