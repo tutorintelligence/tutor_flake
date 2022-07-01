@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.8.0 (2022-07-01)
+### Feature
+* Remove OS.path from all repos ([`402c677`](https://github.com/tutorintelligence/tutor_flake/commit/402c6771998e673263432db01b2f0335f5d5c1f8))
+* Remove OS.path from all repos ([`1beb1f4`](https://github.com/tutorintelligence/tutor_flake/commit/1beb1f452ede6ba3c66ffd5b701167ac97bf52fa))
+* Remove OS.path from all repos ([`4bece8c`](https://github.com/tutorintelligence/tutor_flake/commit/4bece8ca50cd72b9a9870c683cca76b2daec82bd))
+* Remove OS.path from all repos ([`1ffa814`](https://github.com/tutorintelligence/tutor_flake/commit/1ffa8146daf6fe35277159df8d637dbd5302b40e))
+
 ## v0.7.0 (2022-06-28)
 ### Feature
 * Configure max number of possitional arguments ([`281129d`](https://github.com/tutorintelligence/tutor_flake/commit/281129da5db6a2d66975e95d5681c7041ecdf165))
