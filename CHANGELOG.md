@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.8.1 (2022-07-05)
+### Fix
+* Allow untyped variables in dataclass if they are typevars ([`6c78a8b`](https://github.com/tutorintelligence/tutor_flake/commit/6c78a8bca74ef8ceaff95f74952c012f9781fa83))
+
 ## v0.8.0 (2022-07-01)
 ### Feature
 * Remove OS.path from all repos ([`402c677`](https://github.com/tutorintelligence/tutor_flake/commit/402c6771998e673263432db01b2f0335f5d5c1f8))
