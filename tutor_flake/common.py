@@ -37,3 +37,7 @@ def get_targets(
     if isinstance(assignment, ast.Assign):
         return assignment.targets
     return [assignment.target]
+
+
+def is_type_var(node: ast.AST) -> bool:
+    return isinstance(node, ast.Call) and check_name_or_attribute(node.func, "TypeVar")

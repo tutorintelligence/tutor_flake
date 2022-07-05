@@ -4,6 +4,7 @@ isort:skip_file
 import dataclasses
 from dataclasses import dataclass
 from dataclasses import dataclass as dc, field  # noqa: TUTOR101
+from typing import TypeVar  # noqa: TUTOR101
 
 
 @dataclass
@@ -12,6 +13,8 @@ class ExampleDataclass:
     x: int
     y: float
     z = field(default=4)  # noqa: TUTOR100
+
+    Q = TypeVar("Q", bound="ExampleDataclass")
 
     def method(self) -> None:
         return None

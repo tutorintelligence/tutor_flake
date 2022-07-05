@@ -1,7 +1,7 @@
 import ast
 from typing import Generator
 
-from tutor_flake.common import Flake8Error, check_name_or_attribute
+from tutor_flake.common import Flake8Error, check_name_or_attribute, is_type_var
 
 
 class DataclassMissingAnnotations:
@@ -9,7 +9,11 @@ class DataclassMissingAnnotations:
     def check(cls, node: ast.ClassDef) -> Generator[Flake8Error, None, None]:
         if is_dataclass(node):
             for child in node.body:
-                if isinstance(child, ast.Assign) and child.type_comment is None:
+                if (
+                    isinstance(child, ast.Assign)
+                    and child.type_comment is None
+                    and not is_type_var(child.value)
+                ):
                     yield Flake8Error.construct(
                         child,
                         "100",

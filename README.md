@@ -24,6 +24,7 @@ Custom flake8 rules
 
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
+* No adjacent positional arguments with same typing - unless positional only
 
 ## Installation and Configuration
 
