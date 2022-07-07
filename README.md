@@ -11,11 +11,14 @@ Custom flake8 rules
 * TUTOR200 - asyncio.create_task requires the name parameter
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUTOR400 - detect strings that were likely meant to be f-strings
-* TUTOR500 - instance variables set in `__init__` cannot overlap with class variables
+* TUTOR5
+    * TUTOR500 - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
+    * TUTOR510 - No two argument `super` within a class
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
+* TUTOR7
     * TUTOR700 - Prevent `os.path.<func>()` function calls
     * TUTOR710 - Prevent `from os import path`
     * TUTOR720 - Prevent `import os.path`
@@ -25,6 +28,9 @@ Custom flake8 rules
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
 * No adjacent positional arguments with same typing - unless positional only
+* Don't do `x: Foo[bar] = Foo()` - do `x = Foo[bar]()`
+* No addition of string literals (or f-strings)
+* Should we also forbid `os.walk`
 
 ## Installation and Configuration
 
