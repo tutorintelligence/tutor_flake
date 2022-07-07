@@ -1,7 +1,10 @@
 import ast
+import itertools
 from argparse import Namespace
+from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Any, Generator, List
+from functools import wraps
+from typing import Any, Callable, Generator, Iterable, List, TypeVar
 
 from flake8.options.manager import OptionManager
 
@@ -21,6 +24,7 @@ from tutor_flake.rules.positional_args import (
     MaxPostionalArgsInFunctionDef,
 )
 from tutor_flake.rules.string import NoBracketInString
+from tutor_flake.rules.super import NoTwoArgumentSuper
 
 
 @dataclass
@@ -80,50 +84,77 @@ class TutorIntelligenceFlakePlugin:
         cls.config = TutorFlakeConfig.parse_options(options)
 
 
+ASTLike = TypeVar("ASTLike", bound=ast.AST)
+
+
+def visitor_decorator(
+    func: Callable[["CustomVisitor", ASTLike], Iterable[Flake8Error]]
+) -> Callable[["CustomVisitor", ASTLike], None]:
+    @wraps(func)
+    def wrapped_func(visitor: "CustomVisitor", node: ASTLike) -> None:
+        visitor.errors.extend(func(visitor, node))
+        with visitor.add_parent(node):
+            visitor.generic_visit(node)
+
+    return wrapped_func
+
+
 class CustomVisitor(ast.NodeVisitor):
     def __init__(self, config: TutorFlakeConfig) -> None:
         self.errors: List[Flake8Error] = []
         self.config = config
 
-    def visit_Module(self, node: ast.Module) -> Any:
-        self.errors.extend(NoSideeffects.check(node))
-        self.generic_visit(node)
+        self.parents: List[ast.AST] = []
 
-    def visit_ClassDef(self, node: ast.ClassDef) -> None:
-        self.errors.extend(DataclassMissingAnnotations.check(node))
-        self.errors.extend(ClassvarOrderingAndInstanceOverlap.check(node))
-        self.generic_visit(node)
+    @contextmanager
+    def add_parent(self, node: ast.AST) -> Generator[None, Any, Any]:
+        """Adds node to the list of parents"""
+        self.parents.append(node)
+        yield
+        self.parents.pop()
 
-    def visit_Import(self, node: ast.Import) -> Any:
-        self.errors.extend(NoOSPathImports.check(node))
-        self.generic_visit(node)
+    @visitor_decorator
+    def visit_Module(self, node: ast.Module) -> Iterable[Flake8Error]:
+        return NoSideeffects.check(node)
 
-    def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
-        self.errors.extend(DataclassRenamed.check(node))
-        self.errors.extend(NoFromOSPathImports.check(node))
-        self.generic_visit(node)
+    @visitor_decorator
+    def visit_ClassDef(self, node: ast.ClassDef) -> Iterable[Flake8Error]:
+        return itertools.chain(
+            DataclassMissingAnnotations.check(node),
+            ClassvarOrderingAndInstanceOverlap.check(node),
+        )
 
-    def visit_Call(self, node: ast.Call) -> None:
-        self.errors.extend(CreateTaskRequireName.check(node))
-        self.errors.extend(
+    @visitor_decorator
+    def visit_Import(self, node: ast.Import) -> Iterable[Flake8Error]:
+        return NoOSPathImports.check(node)
+
+    @visitor_decorator
+    def visit_ImportFrom(self, node: ast.ImportFrom) -> Iterable[Flake8Error]:
+        return itertools.chain(
+            DataclassRenamed.check(node),
+            NoFromOSPathImports.check(node),
+        )
+
+    @visitor_decorator
+    def visit_Call(self, node: ast.Call) -> Iterable[Flake8Error]:
+        return itertools.chain(
+            CreateTaskRequireName.check(node),
             MaxPositionalArgsInInvocation.check(
                 node, self.config.max_invocation_positional_args
-            )
+            ),
+            NoTwoArgumentSuper.check(node, self.parents),
         )
-        self.generic_visit(node)
 
-    def visit_Constant(self, node: ast.Constant) -> Any:
-        self.errors.extend(NoBracketInString.check(node))
-        self.generic_visit(node)
+    @visitor_decorator
+    def visit_Constant(self, node: ast.Constant) -> Iterable[Flake8Error]:
+        return NoBracketInString.check(node)
 
-    def visit_FunctionDef(self, node: ast.FunctionDef) -> Any:
-        self.errors.extend(
-            MaxPostionalArgsInFunctionDef.check(
-                node, self.config.max_definition_positional_args
-            )
+    @visitor_decorator
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> Iterable[Flake8Error]:
+        return MaxPostionalArgsInFunctionDef.check(
+            node, self.config.max_definition_positional_args
         )
-        self.generic_visit(node)
 
-    def visit_Attribute(self, node: ast.Attribute) -> Any:
-        self.errors.extend(NoOSPathAttrs.check(node))
-        self.generic_visit(node)
+    @visitor_decorator
+    def visit_Attribute(self, node: ast.Attribute) -> Iterable[Flake8Error]:
+        return NoOSPathAttrs.check(node)
