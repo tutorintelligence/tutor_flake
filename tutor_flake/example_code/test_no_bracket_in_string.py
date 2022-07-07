@@ -8,6 +8,10 @@ y = "ab}c{d"
 z = "ab{cd}"  # noqa: TUTOR400
 z2 = f"ab{cd}"
 
+multiline = """
+{} hello
+"""
+
 
 def func(t: str) -> str:
     w = "abcd"

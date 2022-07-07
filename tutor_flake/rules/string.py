@@ -9,7 +9,11 @@ class NoBracketInString:
 
     @classmethod
     def check(cls, node: ast.Constant) -> Generator[Flake8Error, None, None]:
-        if isinstance(msg := node.value, str) and cls.has_bounding_brackets(msg):
+        if (
+            isinstance(msg := node.value, str)
+            and cls.has_bounding_brackets(msg)
+            and cls.not_multiline(msg)
+        ):
             yield Flake8Error.construct(
                 node,
                 "400",
@@ -24,3 +28,7 @@ class NoBracketInString:
             right_bracket_i = len(msg) - 1 - msg[::-1].find("}")
             return left_bracket_i < right_bracket_i
         return False
+
+    @classmethod
+    def not_multiline(cls, msg: str) -> bool:
+        return "\n" not in msg
