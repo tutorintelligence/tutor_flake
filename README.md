@@ -4,7 +4,7 @@ Custom flake8 rules
 
 ## Rules
 
-* TUTOR100 - dataclass class variables require annotations
+* TUTOR100 (DEPRECATED, covered by 502) - dataclass class variables require annotations
     * Notes: you can trick this rule by renaming dataclass - and there is the potential for some false positives
 * TUTOR101 - dataclasses.dataclass cannot be renamed in import
     * Notes: this is meant to act against the major case of false negatives for TUTOR100
@@ -14,6 +14,8 @@ Custom flake8 rules
 * TUTOR5
     * TUTOR500 - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
+    * TUTOR502 - class variables must be type annotated
+    * TUTOR503 - class variables must be annotated as class variables (except for dataclasses and named tuple)
     * TUTOR510 - No two argument `super` within a class
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)

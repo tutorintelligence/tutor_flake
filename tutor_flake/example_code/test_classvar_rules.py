@@ -1,9 +1,17 @@
+import dataclasses
+from dataclasses import dataclass, field
+from typing import ClassVar, NamedTuple, TypeVar
+
+
 class DummyClass:
 
-    a: int = 4
-    b: float
-    c = "abc"
-    d = bool
+    a: int = 4  # noqa: TUTOR503
+    b: float  # noqa: TUTOR503
+    c = "abc"  # noqa: TUTOR502
+    d = bool  # noqa: TUTOR502
+    e: "str" = "abc"  # noqa: TUTOR503
+    f: ClassVar[bool] = False
+    g: ClassVar
 
     def __init__(self, value: float) -> None:
         self.a = 3  # noqa: TUTOR500
@@ -26,5 +34,41 @@ class DummyClass:
         # we allow this, but is still bad
         self.c = new_c
 
-    e: bool  # noqa: TUTOR501
-    f = 3  # noqa: TUTOR501
+    e: ClassVar[bool]  # noqa: TUTOR501
+    f = 3  # noqa: TUTOR501 TUTOR502
+
+
+class NT(NamedTuple):
+    bar: int
+
+
+@dataclass
+class ExampleDataclass:
+    a = 3  # noqa: TUTOR100
+    x: int
+    y: float
+    z = field(default=4)  # noqa: TUTOR100
+
+    Q = TypeVar("Q", bound="ExampleDataclass")
+
+    def method(self) -> None:
+        return None
+
+    def __str__(self) -> str:
+        return super().__str__()
+
+    @classmethod
+    def construct(cls) -> "ExampleDataclass":
+        raise NotImplementedError
+
+    # other inline comment
+
+
+@dataclasses.dataclass
+class Example2:
+    a = 3  # noqa: TUTOR100
+
+
+@dataclass(frozen=True)
+class Example3:
+    a = 4  # noqa: TUTOR100

@@ -4,15 +4,15 @@ from argparse import Namespace
 from contextlib import contextmanager
 from dataclasses import dataclass
 from functools import wraps
-from typing import Any, Callable, Generator, Iterable, List, TypeVar
+from typing import Any, Callable, ClassVar, Generator, Iterable, List, TypeVar
 
 from flake8.options.manager import OptionManager
 
 from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import CreateTaskRequireName
-from tutor_flake.rules.classvar import ClassvarOrderingAndInstanceOverlap
-from tutor_flake.rules.dataclass import DataclassMissingAnnotations, DataclassRenamed
+from tutor_flake.rules.classvar import ClassvarCheck
+from tutor_flake.rules.dataclass import DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
 from tutor_flake.rules.os_path import (
     NoFromOSPathImports,
@@ -62,10 +62,10 @@ class TutorFlakeConfig:
 
 
 class TutorIntelligenceFlakePlugin:
-    name = "tutor_intelligence_custom_flake"
-    version = __version__
+    name: ClassVar[str] = "tutor_intelligence_custom_flake"
+    version: ClassVar[str] = __version__
 
-    config: TutorFlakeConfig
+    config: TutorFlakeConfig  # noqa: TUTOR503
 
     def __init__(self, tree: ast.AST) -> None:
         self._tree = tree
@@ -119,10 +119,7 @@ class CustomVisitor(ast.NodeVisitor):
 
     @visitor_decorator
     def visit_ClassDef(self, node: ast.ClassDef) -> Iterable[Flake8Error]:
-        return itertools.chain(
-            DataclassMissingAnnotations.check(node),
-            ClassvarOrderingAndInstanceOverlap.check(node),
-        )
+        return ClassvarCheck.check(node)
 
     @visitor_decorator
     def visit_Import(self, node: ast.Import) -> Iterable[Flake8Error]:
