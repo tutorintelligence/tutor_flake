@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.9.1 (2022-07-07)
+### Fix
+* Dont check multiline string - often no way to noqa ([`213a852`](https://github.com/tutorintelligence/tutor_flake/commit/213a852ef3dce4241fa5c29735b837353410256d))
+
 ## v0.9.0 (2022-07-07)
 ### Feature
 * Rule against two argument super usage ([`b51e323`](https://github.com/tutorintelligence/tutor_flake/commit/b51e323a25892fc814eabc86ef41d242b0f41356))
