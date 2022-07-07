@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.9.0 (2022-07-07)
+### Feature
+* Rule against two argument super usage ([`b51e323`](https://github.com/tutorintelligence/tutor_flake/commit/b51e323a25892fc814eabc86ef41d242b0f41356))
+
 ## v0.8.1 (2022-07-05)
 ### Fix
 * Allow untyped variables in dataclass if they are typevars ([`6c78a8b`](https://github.com/tutorintelligence/tutor_flake/commit/6c78a8bca74ef8ceaff95f74952c012f9781fa83))
