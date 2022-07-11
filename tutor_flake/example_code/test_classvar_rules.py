@@ -1,6 +1,6 @@
 import dataclasses
 from dataclasses import dataclass, field
-from typing import ClassVar, NamedTuple, TypeVar
+from typing import ClassVar, List, NamedTuple, TypeVar
 
 
 class DummyClass:
@@ -10,8 +10,9 @@ class DummyClass:
     c = "abc"  # noqa: TUTOR502
     d = bool  # noqa: TUTOR502
     e: "str" = "abc"  # noqa: TUTOR503
-    f: ClassVar[bool] = False
-    g: ClassVar
+    f: ClassVar
+    g: ClassVar[bool] = False
+    h: ClassVar[List[bool]]
 
     def __init__(self, value: float) -> None:
         self.a = 3  # noqa: TUTOR500
@@ -34,8 +35,8 @@ class DummyClass:
         # we allow this, but is still bad
         self.c = new_c
 
-    e: ClassVar[bool]  # noqa: TUTOR501
-    f = 3  # noqa: TUTOR501 TUTOR502
+    i: ClassVar[bool]  # noqa: TUTOR501
+    j = 3  # noqa: TUTOR501 TUTOR502
 
 
 class NT(NamedTuple):
@@ -44,10 +45,10 @@ class NT(NamedTuple):
 
 @dataclass
 class ExampleDataclass:
-    a = 3  # noqa: TUTOR100
+    a = 3  # noqa: TUTOR502
     x: int
     y: float
-    z = field(default=4)  # noqa: TUTOR100
+    z = field(default=4)  # noqa: TUTOR502
 
     Q = TypeVar("Q", bound="ExampleDataclass")
 
@@ -66,9 +67,9 @@ class ExampleDataclass:
 
 @dataclasses.dataclass
 class Example2:
-    a = 3  # noqa: TUTOR100
+    a = 3  # noqa: TUTOR502
 
 
 @dataclass(frozen=True)
 class Example3:
-    a = 4  # noqa: TUTOR100
+    a = 4  # noqa: TUTOR502

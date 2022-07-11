@@ -1,5 +1,5 @@
 import ast
-from typing import List, NamedTuple, Type, Union
+from typing import List, NamedTuple, Optional, Type, Union
 
 
 class Flake8Error(NamedTuple):
@@ -39,9 +39,21 @@ def get_targets(
     return [assignment.target]
 
 
-def is_type_var(node: ast.AST) -> bool:
-    return isinstance(node, ast.Call) and check_name_or_attribute(node.func, "TypeVar")
+def is_type_var(node: Optional[ast.AST]) -> bool:
+    return (
+        node is not None
+        and isinstance(node, ast.Call)
+        and check_name_or_attribute(node.func, "TypeVar")
+    )
 
 
 def check_any_parent(parents: List[ast.AST], *types: Type[ast.AST]) -> bool:
     return any(isinstance(node, types) for node in parents)
+
+
+def check_annotation(assignment: ast.AnnAssign, name: str) -> bool:
+    if isinstance(annotation := assignment.annotation, ast.Name):
+        return check_name_or_attribute(annotation, name)
+    elif isinstance(annotation, ast.Subscript):
+        return check_name_or_attribute(annotation.value, name)
+    return False
