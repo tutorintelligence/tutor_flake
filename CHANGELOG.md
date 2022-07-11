@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.0 (2022-07-11)
+### Feature
+* Require class var annotations for class variables ([`240930f`](https://github.com/tutorintelligence/tutor_flake/commit/240930f971d6657e94071b66569718aede315f27))
+
 ## v0.9.1 (2022-07-07)
 ### Fix
 * Dont check multiline string - often no way to noqa ([`213a852`](https://github.com/tutorintelligence/tutor_flake/commit/213a852ef3dce4241fa5c29735b837353410256d))
