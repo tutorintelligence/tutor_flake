@@ -1,5 +1,6 @@
 import dataclasses
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import ClassVar, List, NamedTuple, Protocol, TypeVar
 
 
@@ -45,6 +46,10 @@ class NT(NamedTuple):
 
 class Specifier(Protocol):
     object_id: str
+
+
+class FooEnum(Enum):
+    foo: int
 
 
 @dataclass

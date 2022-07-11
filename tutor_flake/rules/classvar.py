@@ -59,4 +59,6 @@ class ClassvarCheck:
 
     @classmethod
     def is_excepted_class(cls, node: ast.ClassDef) -> bool:
-        return is_dataclass(node) or check_is_subclass(node, "NamedTuple", "Protocol")
+        return is_dataclass(node) or check_is_subclass(  # noqa: TUTOR620
+            node, "NamedTuple", "Protocol", "Enum", "IntEnum"
+        )

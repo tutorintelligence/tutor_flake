@@ -15,10 +15,12 @@ Custom flake8 rules
     * TUTOR500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
     * TUTOR502 - class variables must be type annotated
-    * TUTOR503 - class variables must be annotated as class variables, with exceptiosn for:
+        * It is safe to ignore this rule in the case where the variable is inherited - this is hard to detect in flake though
+    * TUTOR503 - class variables must be annotated as class variables, with exceptions for:
         * dataclasses
         * NamedTuple
         * Protocol
+        * Enum and IntEnum
     * TUTOR510 - No two argument `super` within a class
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
