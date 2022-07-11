@@ -1,25 +1,7 @@
 import ast
 from typing import Generator
 
-from tutor_flake.common import Flake8Error, check_name_or_attribute, is_type_var
-
-
-class DataclassMissingAnnotations:
-    @classmethod
-    def check(cls, node: ast.ClassDef) -> Generator[Flake8Error, None, None]:
-        if is_dataclass(node):
-            for child in node.body:
-                if (
-                    isinstance(child, ast.Assign)
-                    and child.type_comment is None
-                    and not is_type_var(child.value)
-                ):
-                    yield Flake8Error.construct(
-                        child,
-                        "100",
-                        "Dataclass missing annotation for a class variable",
-                        cls,
-                    )
+from tutor_flake.common import Flake8Error
 
 
 class DataclassRenamed:
@@ -31,13 +13,3 @@ class DataclassRenamed:
                     yield Flake8Error.construct(
                         node, "101", "Dataclass renamed on import", cls
                     )
-
-
-def is_dataclass(node: ast.ClassDef) -> bool:
-    for decorator in node.decorator_list:
-        if check_name_or_attribute(decorator, "dataclass") or (
-            isinstance(decorator, ast.Call)
-            and check_name_or_attribute(decorator.func, "dataclass")
-        ):
-            return True
-    return False
