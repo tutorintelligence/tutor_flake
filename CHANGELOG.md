@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.1 (2022-07-11)
+### Fix
+* Exception for Protocol ([`83ecb47`](https://github.com/tutorintelligence/tutor_flake/commit/83ecb47f688396c205e73efd620dbe939ca714ad))
+
 ## v0.10.0 (2022-07-11)
 ### Feature
 * Require class var annotations for class variables ([`240930f`](https://github.com/tutorintelligence/tutor_flake/commit/240930f971d6657e94071b66569718aede315f27))
