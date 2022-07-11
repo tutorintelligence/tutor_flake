@@ -1,6 +1,6 @@
 import dataclasses
 from dataclasses import dataclass, field
-from typing import ClassVar, List, NamedTuple, TypeVar
+from typing import ClassVar, List, NamedTuple, Protocol, TypeVar
 
 
 class DummyClass:
@@ -41,6 +41,10 @@ class DummyClass:
 
 class NT(NamedTuple):
     bar: int
+
+
+class Specifier(Protocol):
+    object_id: str
 
 
 @dataclass

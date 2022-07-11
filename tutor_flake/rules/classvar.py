@@ -4,6 +4,7 @@ from typing import Generator
 from tutor_flake.common import (
     Flake8Error,
     check_annotation,
+    check_is_subclass,
     check_name_or_attribute,
     get_targets,
     is_type_var,
@@ -18,10 +19,6 @@ def is_dataclass(node: ast.ClassDef) -> bool:
         ):
             return True
     return False
-
-
-def is_named_tuple(node: ast.ClassDef) -> bool:
-    return any(check_name_or_attribute(base, "NamedTuple") for base in node.bases)
 
 
 class ClassvarCheck:
@@ -47,10 +44,8 @@ class ClassvarCheck:
                             cls,
                         )
 
-                    elif (
-                        not is_dataclass(node)
-                        and not is_named_tuple(node)
-                        and not check_annotation(child, "ClassVar")
+                    elif not cls.is_excepted_class(node) and not check_annotation(
+                        child, "ClassVar"
                     ):
                         yield Flake8Error.construct(
                             child,
@@ -61,3 +56,7 @@ class ClassvarCheck:
 
             elif isinstance(child, ast.FunctionDef):
                 function_seen = True
+
+    @classmethod
+    def is_excepted_class(cls, node: ast.ClassDef) -> bool:
+        return is_dataclass(node) or check_is_subclass(node, "NamedTuple", "Protocol")

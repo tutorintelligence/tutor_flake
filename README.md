@@ -15,7 +15,10 @@ Custom flake8 rules
     * TUTOR500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
     * TUTOR502 - class variables must be type annotated
-    * TUTOR503 - class variables must be annotated as class variables (except for dataclasses and named tuple)
+    * TUTOR503 - class variables must be annotated as class variables, with exceptiosn for:
+        * dataclasses
+        * NamedTuple
+        * Protocol
     * TUTOR510 - No two argument `super` within a class
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)

@@ -57,3 +57,7 @@ def check_annotation(assignment: ast.AnnAssign, name: str) -> bool:
     elif isinstance(annotation, ast.Subscript):
         return check_name_or_attribute(annotation.value, name)
     return False
+
+
+def check_is_subclass(node: ast.ClassDef, *name_or_attr: str) -> bool:
+    return any(check_name_or_attribute(base, *name_or_attr) for base in node.bases)
