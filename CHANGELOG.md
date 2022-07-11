@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.2 (2022-07-11)
+### Fix
+* Allow Enum to not be ClassVar annotatted ([`c3f7bd0`](https://github.com/tutorintelligence/tutor_flake/commit/c3f7bd0cfd50a5a84b827393ec4a3dffa9915406))
+
 ## v0.10.1 (2022-07-11)
 ### Fix
 * Exception for Protocol ([`83ecb47`](https://github.com/tutorintelligence/tutor_flake/commit/83ecb47f688396c205e73efd620dbe939ca714ad))
