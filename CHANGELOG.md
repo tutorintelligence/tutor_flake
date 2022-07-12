@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.3 (2022-07-12)
+### Fix
+* Ignore classvar on TypedDict ([`9c510ab`](https://github.com/tutorintelligence/tutor_flake/commit/9c510ab58846d65b59bed41fe66c9c05810a7531))
+
 ## v0.10.2 (2022-07-11)
 ### Fix
 * Allow Enum to not be ClassVar annotatted ([`c3f7bd0`](https://github.com/tutorintelligence/tutor_flake/commit/c3f7bd0cfd50a5a84b827393ec4a3dffa9915406))
