@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.4 (2022-07-12)
+### Fix
+* Except Enum from 502 as well ([`0a725fb`](https://github.com/tutorintelligence/tutor_flake/commit/0a725fbb165e92bc6fcaaa8a315974b327830492))
+
 ## v0.10.3 (2022-07-12)
 ### Fix
 * Ignore classvar on TypedDict ([`9c510ab`](https://github.com/tutorintelligence/tutor_flake/commit/9c510ab58846d65b59bed41fe66c9c05810a7531))
