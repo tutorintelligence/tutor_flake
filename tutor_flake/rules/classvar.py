@@ -35,7 +35,9 @@ class ClassvarCheck:
                             f"Class variable `{target.id}` instantiated after methods",  # type: ignore
                             cls,
                         )
-                if not is_type_var(child.value):
+                if not cls.is_class_exempt_from_class_var_type_annotations(
+                    node
+                ) and not is_type_var(child.value):
                     if isinstance(child, ast.Assign):
                         yield Flake8Error.construct(
                             child,
@@ -44,9 +46,9 @@ class ClassvarCheck:
                             cls,
                         )
 
-                    elif not cls.is_excepted_class(node) and not check_annotation(
-                        child, "ClassVar"
-                    ):
+                    elif not cls.is_class_exempt_from_type_annotations(
+                        node
+                    ) and not check_annotation(child, "ClassVar"):
                         yield Flake8Error.construct(
                             child,
                             "503",
@@ -58,7 +60,13 @@ class ClassvarCheck:
                 function_seen = True
 
     @classmethod
-    def is_excepted_class(cls, node: ast.ClassDef) -> bool:
+    def is_class_exempt_from_type_annotations(cls, node: ast.ClassDef) -> bool:
+        return check_is_subclass(node, "Enum", "IntEnum")
+
+    @classmethod
+    def is_class_exempt_from_class_var_type_annotations(
+        cls, node: ast.ClassDef
+    ) -> bool:
         return is_dataclass(node) or check_is_subclass(  # noqa: TUTOR620
             node, "NamedTuple", "Protocol", "Enum", "IntEnum", "TypedDict"
         )

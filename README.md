@@ -15,6 +15,7 @@ Custom flake8 rules
     * TUTOR500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
     * TUTOR502 - class variables must be type annotated
+        * with exceptions for Enum and IntEnum
         * It is safe to ignore this rule in the case where the variable is inherited - this is hard to detect in flake though
     * TUTOR503 - class variables must be annotated as class variables, with exceptions for:
         * dataclasses

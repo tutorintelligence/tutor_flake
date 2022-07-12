@@ -49,7 +49,7 @@ class Specifier(Protocol):
 
 
 class FooEnum(Enum):
-    foo: int
+    foo = 1
 
 
 @dataclass
