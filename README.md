@@ -21,6 +21,7 @@ Custom flake8 rules
         * NamedTuple
         * Protocol
         * Enum and IntEnum
+        * TypedDict
     * TUTOR510 - No two argument `super` within a class
 * TUTOR6
     * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
