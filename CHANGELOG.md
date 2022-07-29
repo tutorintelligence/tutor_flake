@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.11.0 (2022-07-29)
+### Feature
+* Forbid redundant type annotations ([`a797e94`](https://github.com/tutorintelligence/tutor_flake/commit/a797e94f9a6d51ca24775e59f6d3675c5b0bb2d8))
+
 ## v0.10.4 (2022-07-12)
 ### Fix
 * Except Enum from 502 as well ([`0a725fb`](https://github.com/tutorintelligence/tutor_flake/commit/0a725fbb165e92bc6fcaaa8a315974b327830492))
