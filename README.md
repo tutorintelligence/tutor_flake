@@ -10,7 +10,11 @@ Custom flake8 rules
     * Notes: this is meant to act against the major case of false negatives for TUTOR100
 * TUTOR200 - asyncio.create_task requires the name parameter
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
-* TUTOR400 - detect strings that were likely meant to be f-strings
+* TUTOR4:
+    * TUTOR400 - detect strings that were likely meant to be f-strings
+    * TUTOR410 - detect redundant type annotations
+    * TUTOR411 - detect redundant type annotations for generic assignment
+        * Don't do `x: Foo[bar] = Foo()` ; do `x = Foo[bar]()`
 * TUTOR5
     * TUTOR500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
     * TUTOR501 - class variables must be defined before all functions
@@ -37,7 +41,6 @@ Custom flake8 rules
 * Enforce calling await on async methods
     * I would like to do this - but I don't know how to identify if a method is async
 * No adjacent positional arguments with same typing - unless positional only
-* Don't do `x: Foo[bar] = Foo()` - do `x = Foo[bar]()`
 * No addition of string literals (or f-strings)
 * Should we also forbid `os.walk`
 

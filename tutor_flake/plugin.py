@@ -12,6 +12,7 @@ from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import CreateTaskRequireName
 from tutor_flake.rules.classvar import ClassvarCheck
+from tutor_flake.rules.compact_generic import CompactGeneric
 from tutor_flake.rules.dataclass import DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
 from tutor_flake.rules.os_path import (
@@ -155,3 +156,7 @@ class CustomVisitor(ast.NodeVisitor):
     @visitor_decorator
     def visit_Attribute(self, node: ast.Attribute) -> Iterable[Flake8Error]:
         return NoOSPathAttrs.check(node)
+
+    @visitor_decorator
+    def visit_AnnAssign(self, node: ast.AnnAssign) -> Iterable[Flake8Error]:
+        return CompactGeneric.check(node)
