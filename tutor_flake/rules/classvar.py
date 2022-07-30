@@ -5,20 +5,10 @@ from tutor_flake.common import (
     Flake8Error,
     check_annotation,
     check_is_subclass,
-    check_name_or_attribute,
     get_targets,
+    is_dataclass,
     is_type_var,
 )
-
-
-def is_dataclass(node: ast.ClassDef) -> bool:
-    for decorator in node.decorator_list:
-        if check_name_or_attribute(decorator, "dataclass") or (
-            isinstance(decorator, ast.Call)
-            and check_name_or_attribute(decorator.func, "dataclass")
-        ):
-            return True
-    return False
 
 
 class ClassvarCheck:

@@ -63,5 +63,15 @@ def check_is_subclass(node: ast.ClassDef, *name_or_attr: str) -> bool:
     return any(check_name_or_attribute(base, *name_or_attr) for base in node.bases)
 
 
-def check_name_equality(name: ast.Name, other: ast.AST) -> bool:
-    return isinstance(other, ast.Name) and name.id == other.id and name.ctx == other.ctx
+def check_name_equality(name: ast.Name, other: ast.Name) -> bool:
+    return name.id == other.id and name.ctx == other.ctx
+
+
+def is_dataclass(node: ast.ClassDef) -> bool:
+    for decorator in node.decorator_list:
+        if check_name_or_attribute(decorator, "dataclass") or (
+            isinstance(decorator, ast.Call)
+            and check_name_or_attribute(decorator.func, "dataclass")
+        ):
+            return True
+    return False

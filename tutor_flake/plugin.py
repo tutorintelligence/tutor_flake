@@ -4,7 +4,7 @@ from argparse import Namespace
 from contextlib import contextmanager
 from dataclasses import dataclass
 from functools import wraps
-from typing import Any, Callable, ClassVar, Generator, Iterable, List, TypeVar
+from typing import Any, Callable, ClassVar, Generator, Iterable, List, Optional, TypeVar
 
 from flake8.options.manager import OptionManager
 
@@ -107,6 +107,10 @@ class CustomVisitor(ast.NodeVisitor):
 
         self.parents: List[ast.AST] = []
 
+    @property
+    def parent(self) -> Optional[ast.AST]:
+        return None if len(self.parents) == 0 else self.parents[-1]
+
     @contextmanager
     def add_parent(self, node: ast.AST) -> Generator[None, Any, Any]:
         """Adds node to the list of parents"""
@@ -159,4 +163,4 @@ class CustomVisitor(ast.NodeVisitor):
 
     @visitor_decorator
     def visit_AnnAssign(self, node: ast.AnnAssign) -> Iterable[Flake8Error]:
-        return CompactGeneric.check(node)
+        return CompactGeneric.check(node, self.parent)
