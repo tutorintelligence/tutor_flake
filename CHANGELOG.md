@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.11.1 (2022-07-30)
+### Fix
+* Expections to compact generic rule ([`f51a678`](https://github.com/tutorintelligence/tutor_flake/commit/f51a678c4ad0ff53339fa8f1c8f9f6b59af88193))
+
 ## v0.11.0 (2022-07-29)
 ### Feature
 * Forbid redundant type annotations ([`a797e94`](https://github.com/tutorintelligence/tutor_flake/commit/a797e94f9a6d51ca24775e59f6d3675c5b0bb2d8))
