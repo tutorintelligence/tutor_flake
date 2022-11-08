@@ -41,6 +41,10 @@ async def use_dot_dot_dot() -> Any:
     ...
 
 
+async def immediate_return() -> Any:
+    return 0
+
+
 async def no_await() -> Any:  # noqa: TUTOR210
     x = 4
     y = x + 3

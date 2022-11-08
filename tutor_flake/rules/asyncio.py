@@ -29,6 +29,7 @@ class AsyncFunctionsAreAsynchronous:
         return (
             isinstance(first_line, ast.Raise)
             or isinstance(first_line, ast.Pass)
+            or isinstance(first_line, ast.Return)
             or (
                 isinstance(first_line, ast.Expr)
                 and isinstance(val := first_line.value, ast.Constant)

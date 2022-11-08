@@ -11,7 +11,7 @@ Custom flake8 rules
 * TUTOR2:
     * TUTOR200 - asyncio.create_task requires the name parameter
     * TUTOR210 - async function call either `await` or `async for` or `async with`
-        * If the body of the function is either `pass` or immediately errors, the function is excused
+        * If the body of the function is either `pass` or immediately errors or immediately returns, the function is excused
         * It is expected that some class functions will fail this rule, but it still has utility
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUTOR4:
