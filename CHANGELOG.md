@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.12.0 (2022-11-08)
+### Feature
+* Check all async functions are meaningful asynchronous ([#5](https://github.com/tutorintelligence/tutor_flake/issues/5)) ([`0cfec44`](https://github.com/tutorintelligence/tutor_flake/commit/0cfec44319165e01a24d207fccf9ba4069614adf))
+
 ## v0.11.1 (2022-07-30)
 ### Fix
 * Expections to compact generic rule ([`f51a678`](https://github.com/tutorintelligence/tutor_flake/commit/f51a678c4ad0ff53339fa8f1c8f9f6b59af88193))
