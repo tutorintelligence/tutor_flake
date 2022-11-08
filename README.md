@@ -8,7 +8,11 @@ Custom flake8 rules
     * Notes: you can trick this rule by renaming dataclass - and there is the potential for some false positives
 * TUTOR101 - dataclasses.dataclass cannot be renamed in import
     * Notes: this is meant to act against the major case of false negatives for TUTOR100
-* TUTOR200 - asyncio.create_task requires the name parameter
+* TUTOR2:
+    * TUTOR200 - asyncio.create_task requires the name parameter
+    * TUTOR210 - async function call either `await` or `async for` or `async with`
+        * If the body of the function is either `pass` or immediately errors, the function is excused
+        * It is expected that some class functions will fail this rule, but it still has utility
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUTOR4:
     * TUTOR400 - detect strings that were likely meant to be f-strings
