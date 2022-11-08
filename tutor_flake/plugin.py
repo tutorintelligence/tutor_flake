@@ -10,7 +10,10 @@ from flake8.options.manager import OptionManager
 
 from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
-from tutor_flake.rules.asyncio import CreateTaskRequireName
+from tutor_flake.rules.asyncio import (
+    AsyncFunctionsAreAsynchronous,
+    CreateTaskRequireName,
+)
 from tutor_flake.rules.classvar import ClassvarCheck
 from tutor_flake.rules.compact_generic import CompactGeneric
 from tutor_flake.rules.dataclass import DataclassRenamed
@@ -164,3 +167,9 @@ class CustomVisitor(ast.NodeVisitor):
     @visitor_decorator
     def visit_AnnAssign(self, node: ast.AnnAssign) -> Iterable[Flake8Error]:
         return CompactGeneric.check(node, self.parent)
+
+    @visitor_decorator
+    def visit_AsyncFunctionDef(
+        self, node: ast.AsyncFunctionDef
+    ) -> Iterable[Flake8Error]:
+        return AsyncFunctionsAreAsynchronous.check(node)
