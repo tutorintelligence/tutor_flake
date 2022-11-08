@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.13.0 (2022-11-08)
+### Feature
+* Async allow immediate return ([`44d030c`](https://github.com/tutorintelligence/tutor_flake/commit/44d030c371a4bcef8af6cc791fa0a77b52ba148d))
+
 ## v0.12.0 (2022-11-08)
 ### Feature
 * Check all async functions are meaningful asynchronous ([#5](https://github.com/tutorintelligence/tutor_flake/issues/5)) ([`0cfec44`](https://github.com/tutorintelligence/tutor_flake/commit/0cfec44319165e01a24d207fccf9ba4069614adf))
