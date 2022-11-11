@@ -13,6 +13,7 @@ from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import (
     AsyncFunctionsAreAsynchronous,
     CreateTaskRequireName,
+    HandlersAreSafeForCancelledErrors,
 )
 from tutor_flake.rules.classvar import ClassvarCheck
 from tutor_flake.rules.compact_generic import CompactGeneric
@@ -173,3 +174,11 @@ class CustomVisitor(ast.NodeVisitor):
         self, node: ast.AsyncFunctionDef
     ) -> Iterable[Flake8Error]:
         return AsyncFunctionsAreAsynchronous.check(node)
+
+    @visitor_decorator
+    def visit_ExceptHandler(self, node: ast.ExceptHandler) -> Iterable[Flake8Error]:
+        return HandlersAreSafeForCancelledErrors.check_except_handler(node)
+
+    @visitor_decorator
+    def visit_Try(self, node: ast.Try) -> Iterable[Flake8Error]:
+        return HandlersAreSafeForCancelledErrors.check_finally_body(node)

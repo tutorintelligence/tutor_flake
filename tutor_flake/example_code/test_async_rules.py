@@ -1,5 +1,5 @@
 import asyncio
-from asyncio import create_task
+from asyncio import CancelledError, create_task
 from typing import Any
 
 
@@ -53,3 +53,52 @@ async def no_await() -> Any:  # noqa: TUTOR210
         await foo()
 
     return str(y)
+
+
+async def try_catch_with_unsafe_async_handlers() -> Any:
+    try:
+        await foo()
+    except (CancelledError, AssertionError):
+        await foo()  # noqa: TUTOR220
+        await asyncio.wait(foo())  # noqa: TUTOR220
+        for _ in [1, 2, 3]:
+            await foo()  # noqa: TUTOR220
+    except (asyncio.CancelledError):
+        async for x in foo():  # noqa: TUTOR220
+            return x
+    except (asyncio.exceptions.CancelledError):
+        async with foo() as x:  # noqa: TUTOR220
+            return x
+    except BaseException:
+        await foo()  # noqa: TUTOR220
+    except:  # noqa: E722
+        await foo()  # noqa: TUTOR220
+    finally:
+        await foo()  # noqa: TUTOR220
+
+
+async def try_catch_with_safe_async_handlers() -> Any:
+    try:
+        await foo()
+    except (CancelledError, AssertionError):
+        await asyncio.wait(foo(), timeout=3)
+        await asyncio.wait_for(foo(), 7)
+        await asyncio.wait_for(foo(), timeout=7)
+    finally:
+        await asyncio.wait(foo(), timeout=3)
+
+
+async def catch_with_sync_exception_and_finally() -> Any:
+    try:
+        await foo()
+    except RuntimeError:
+
+        async def bar() -> None:
+            await foo()
+
+    finally:
+
+        async def bar() -> None:
+            await foo()
+
+        print(3 + 4)
