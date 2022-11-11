@@ -13,7 +13,7 @@ Custom flake8 rules
     * TUTOR210 - async function call either `await` or `async for` or `async with`
         * If the body of the function is either `pass` or immediately errors or immediately returns, the function is excused
         * It is expected that some class functions will fail this rule, but it still has utility
-    * TUTOR220 - no async function in a `catch` block that will catch a cancelled error or `finally` that is not wrapped with `asyncio.wait_for` or `asyncio.wait`, prevents running forever when task is cancelled
+    * TUTOR220 - no async function in a `catch` block that will catch a cancelled error or `finally` that is not one of `asyncio.wait_for`, `asyncio.wait` or `asyncio.sleep`, prevents running forever when task is cancelled
 * TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUTOR4:
     * TUTOR400 - detect strings that were likely meant to be f-strings

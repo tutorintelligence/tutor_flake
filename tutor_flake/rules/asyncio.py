@@ -105,7 +105,7 @@ class HandlersAreSafeForCancelledErrors:
             and isinstance(value := node.value, ast.Call)
             and (
                 cls._is_safe_wait(value)
-                or check_name_or_attribute(value.func, "wait_for")
+                or check_name_or_attribute(value.func, "wait_for", "sleep")
             )
         )
 

@@ -81,6 +81,7 @@ async def try_catch_with_safe_async_handlers() -> Any:
     try:
         await foo()
     except (CancelledError, AssertionError):
+        await asyncio.sleep(3)
         await asyncio.wait(foo(), timeout=3)
         await asyncio.wait_for(foo(), 7)
         await asyncio.wait_for(foo(), timeout=7)
