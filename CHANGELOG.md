@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.14.0 (2022-11-11)
+### Feature
+* Prevent hanging async processes post cancellation ([`77b433c`](https://github.com/tutorintelligence/tutor_flake/commit/77b433ca041baad47b8542213c957acbb57b7b98))
+
 ## v0.13.0 (2022-11-08)
 ### Feature
 * Async allow immediate return ([`44d030c`](https://github.com/tutorintelligence/tutor_flake/commit/44d030c371a4bcef8af6cc791fa0a77b52ba148d))
