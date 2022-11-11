@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.14.1 (2022-11-11)
+### Fix
+* Allow asyncio sleep in exception handling ([`f3daf2e`](https://github.com/tutorintelligence/tutor_flake/commit/f3daf2e411af012ffbeaab8f43e584944d0d89a2))
+
 ## v0.14.0 (2022-11-11)
 ### Feature
 * Prevent hanging async processes post cancellation ([`77b433c`](https://github.com/tutorintelligence/tutor_flake/commit/77b433ca041baad47b8542213c957acbb57b7b98))
