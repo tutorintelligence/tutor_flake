@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.14.2 (2022-11-11)
+### Fix
+* Only trigger error in correct catch blocks ([`a49de82`](https://github.com/tutorintelligence/tutor_flake/commit/a49de82ebc3da64f5e33729d8465d412e8c053fb))
+* Only trigger error in correct catch blocks ([`16ecb90`](https://github.com/tutorintelligence/tutor_flake/commit/16ecb9001cbfa23acb57c9715706901a06908cc2))
+
 ## v0.14.1 (2022-11-11)
 ### Fix
 * Allow asyncio sleep in exception handling ([`f3daf2e`](https://github.com/tutorintelligence/tutor_flake/commit/f3daf2e411af012ffbeaab8f43e584944d0d89a2))
