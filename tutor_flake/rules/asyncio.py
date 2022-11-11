@@ -69,13 +69,13 @@ class HandlersAreSafeForCancelledErrors:
 
     @classmethod
     def _is_type_cancelled_error(cls, type: Optional[ast.AST]) -> bool:
-        if type is not None and check_name_or_attribute(
+        if type is None or check_name_or_attribute(
             type, "CancelledError", "BaseException"
         ):
             return True
         elif isinstance(type, ast.Tuple):
-            return any(cls._is_type_cancelled_error(elt) for elt in type.elts)
-        return True
+            return any((cls._is_type_cancelled_error(elt) for elt in type.elts))
+        return False
 
     @classmethod
     def _check_statements(

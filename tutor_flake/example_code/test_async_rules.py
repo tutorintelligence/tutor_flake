@@ -89,10 +89,10 @@ async def try_catch_with_safe_async_handlers() -> Any:
         await asyncio.wait(foo(), timeout=3)
 
 
-async def catch_with_sync_exception_and_finally() -> Any:
+async def try_catch_with_sync_exception_and_finally() -> Any:
     try:
         await foo()
-    except RuntimeError:
+    except CancelledError:
 
         async def bar() -> None:
             await foo()
@@ -103,3 +103,14 @@ async def catch_with_sync_exception_and_finally() -> Any:
             await foo()
 
         print(3 + 4)
+
+
+async def try_catch_with_async_handlers_in_safe_exceptions() -> Any:
+    try:
+        await foo()
+    except RuntimeError:
+        await foo()
+    except (AssertionError, KeyError):
+        await foo()
+    except Exception:
+        await foo()
