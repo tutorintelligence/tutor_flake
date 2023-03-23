@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.15.1 (2023-03-23)
+### Fix
+* Classvar and type annotation rules apply correctly ([#7](https://github.com/tutorintelligence/tutor_flake/issues/7)) ([`f23b344`](https://github.com/tutorintelligence/tutor_flake/commit/f23b344a18905dc65cade6cc449a9a836e9eb88b))
+
 ## v0.15.0 (2023-03-23)
 ### Feature
 * Update python version and flake version ([#6](https://github.com/tutorintelligence/tutor_flake/issues/6)) ([`6d9c9f2`](https://github.com/tutorintelligence/tutor_flake/commit/6d9c9f235fb5a954f3c2c2116490d643ba63e6ce))
