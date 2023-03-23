@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.15.0 (2023-03-23)
+### Feature
+* Update python version and flake version ([#6](https://github.com/tutorintelligence/tutor_flake/issues/6)) ([`6d9c9f2`](https://github.com/tutorintelligence/tutor_flake/commit/6d9c9f235fb5a954f3c2c2116490d643ba63e6ce))
+
 ## v0.14.2 (2022-11-11)
 ### Fix
 * Only trigger error in correct catch blocks ([`a49de82`](https://github.com/tutorintelligence/tutor_flake/commit/a49de82ebc3da64f5e33729d8465d412e8c053fb))
