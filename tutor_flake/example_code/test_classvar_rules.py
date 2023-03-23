@@ -16,17 +16,10 @@ class DummyClass:
     h: ClassVar[List[bool]]
 
     def __init__(self, value: float) -> None:
-        self.a = 3  # noqa: TUTOR500
-        if 3 - 2 == 1:
-            self.b = value  # noqa: TUTOR500
-        self.b += 1.3  # noqa: TUTOR500
-        self.c = str(value)  # noqa: TUTOR500
-        d = 4
-        print(d)
-        self.x = value
+        pass
 
     def __repr__(self) -> str:
-        return f"{self.a} {self.b} {self.x}"
+        return f"{self.a} {self.b}"
 
     @classmethod
     def override(cls, new_c: str) -> None:
