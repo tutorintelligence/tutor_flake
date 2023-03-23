@@ -25,7 +25,7 @@ class ClassvarCheck:
                             f"Class variable `{target.id}` instantiated after methods",  # type: ignore
                             cls,
                         )
-                if not cls.is_class_exempt_from_class_var_type_annotations(
+                if not cls.is_class_exempt_from_type_annotations(
                     node
                 ) and not is_type_var(child.value):
                     if isinstance(child, ast.Assign):
@@ -36,7 +36,7 @@ class ClassvarCheck:
                             cls,
                         )
 
-                    elif not cls.is_class_exempt_from_type_annotations(
+                    elif not cls.is_class_exempt_from_class_var_type_annotations(
                         node
                     ) and not check_annotation(child, "ClassVar"):
                         yield Flake8Error.construct(
