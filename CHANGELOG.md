@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.17.0 (2023-05-12)
+### Feature
+* Enforce that async tasks are not dropped ([`7d83116`](https://github.com/tutorintelligence/tutor_flake/commit/7d83116e3ec8483e1db86ff33ab302b5519b6bf0))
+
 ## v0.16.0 (2023-05-12)
 ### Feature
 * Change code from TUTOR to TUT ([`b0653f9`](https://github.com/tutorintelligence/tutor_flake/commit/b0653f9a37c40e5522d1ed305aceca6dcb727648))
