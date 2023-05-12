@@ -14,11 +14,12 @@ def main() -> None:
     _ = create_task(foo())  # noqa: TUT200
 
 
-async def test_201() -> None:
+async def test_201() -> asyncio.Task:
     await create_task(foo(), name="1")
     await (create_task(foo(), name="1"))
     create_task(foo(), name="1")  # noqa: TUT201
     (create_task(foo(), name="1"))  # noqa: TUT201
+    return create_task(foo(), name="1")
 
 
 async def use_async_context_manager() -> Any:
