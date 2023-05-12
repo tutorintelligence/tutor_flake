@@ -1,5 +1,6 @@
 import ast
 import itertools
+from _ast import Expr
 from argparse import Namespace
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -12,6 +13,7 @@ from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import (
     AsyncFunctionsAreAsynchronous,
+    CreateTaskIsAssigned,
     CreateTaskRequireName,
     HandlersAreSafeForCancelledErrors,
 )
@@ -182,3 +184,7 @@ class CustomVisitor(ast.NodeVisitor):
     @visitor_decorator
     def visit_Try(self, node: ast.Try) -> Iterable[Flake8Error]:
         return HandlersAreSafeForCancelledErrors.check_finally_body(node)
+
+    @visitor_decorator
+    def visit_Expr(self, node: Expr) -> Iterable[Flake8Error]:
+        return CreateTaskIsAssigned.check(node)

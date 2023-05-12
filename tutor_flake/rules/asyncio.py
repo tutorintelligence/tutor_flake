@@ -15,6 +15,20 @@ class CreateTaskRequireName:
             )
 
 
+class CreateTaskIsAssigned:
+    @classmethod
+    def check(cls, node: ast.Expr) -> Generator[Flake8Error, None, None]:
+        if isinstance(node.value, ast.Call) and check_name_or_attribute(
+            node.value.func, "create_task"
+        ):
+            yield Flake8Error.construct(
+                node,
+                "201",
+                "create_task function not assigned to a value or await-ed",
+                cls,
+            )
+
+
 def is_node_async(node: ast.AST) -> bool:
     return isinstance(node, (ast.Await, ast.AsyncFor, ast.AsyncWith))
 
