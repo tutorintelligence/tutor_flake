@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.16.0 (2023-05-12)
+### Feature
+* Change code from TUTOR to TUT ([`b0653f9`](https://github.com/tutorintelligence/tutor_flake/commit/b0653f9a37c40e5522d1ed305aceca6dcb727648))
+
 ## v0.15.1 (2023-03-23)
 ### Fix
 * Classvar and type annotation rules apply correctly ([#7](https://github.com/tutorintelligence/tutor_flake/issues/7)) ([`f23b344`](https://github.com/tutorintelligence/tutor_flake/commit/f23b344a18905dc65cade6cc449a9a836e9eb88b))
