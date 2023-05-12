@@ -70,7 +70,7 @@ class TutorIntelligenceFlakePlugin:
     name: ClassVar[str] = "tutor_intelligence_custom_flake"
     version: ClassVar[str] = __version__
 
-    config: TutorFlakeConfig  # noqa: TUTOR503
+    config: TutorFlakeConfig  # noqa: TUT503
 
     def __init__(self, tree: ast.AST) -> None:
         self._tree = tree

@@ -28,10 +28,10 @@ class Baz:
 
 
 if __name__ == "__main__":
-    f_bad_1: Foo = Foo()  # noqa: TUTOR410
-    f_bad_2: Foo[int] = Foo()  # noqa: TUTOR411
-    f_bad_3: Foo[int] = Foo(1, 2, three=3)  # noqa: TUTOR411
-    b_bad: Bar[int, typing.Sequence[float]] = Bar()  # noqa: TUTOR411
+    f_bad_1: Foo = Foo()  # noqa: TUT410
+    f_bad_2: Foo[int] = Foo()  # noqa: TUT411
+    f_bad_3: Foo[int] = Foo(1, 2, three=3)  # noqa: TUT411
+    b_bad: Bar[int, typing.Sequence[float]] = Bar()  # noqa: TUT411
 
     q: Queue[int] = Queue()
     f_good = Foo[int]()

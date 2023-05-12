@@ -5,7 +5,7 @@ v = 10
 w = "abcd"
 x = "abc{d"
 y = "ab}c{d"
-z = "ab{cd}"  # noqa: TUTOR400
+z = "ab{cd}"  # noqa: TUT400
 z2 = f"ab{cd}"
 
 multiline = """
@@ -17,10 +17,10 @@ def func(t: str) -> str:
     w = "abcd"
     x = "abc{d"
     y = "ab}c{d"
-    z = "ab{cd}"  # noqa: TUTOR400
+    z = "ab{cd}"  # noqa: TUT400
     z2 = f"ab{cd}"
     return w + x + y + z + z2
 
 
-a = func("{abcd}")  # noqa: TUTOR400
+a = func("{abcd}")  # noqa: TUT400
 b = func(f"ab{cd = }")

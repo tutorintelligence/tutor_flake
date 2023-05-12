@@ -57,6 +57,6 @@ class ClassvarCheck:
     def is_class_exempt_from_class_var_type_annotations(
         cls, node: ast.ClassDef
     ) -> bool:
-        return is_dataclass(node) or check_is_subclass(  # noqa: TUTOR620
+        return is_dataclass(node) or check_is_subclass(  # noqa: TUT620
             node, "NamedTuple", "Protocol", "Enum", "IntEnum", "TypedDict"
         )

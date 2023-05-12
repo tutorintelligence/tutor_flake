@@ -4,42 +4,42 @@ Custom flake8 rules
 
 ## Rules
 
-* TUTOR100 (DEPRECATED, covered by 502) - dataclass class variables require annotations
+* TUT100 (DEPRECATED, covered by 502) - dataclass class variables require annotations
     * Notes: you can trick this rule by renaming dataclass - and there is the potential for some false positives
-* TUTOR101 - dataclasses.dataclass cannot be renamed in import
-    * Notes: this is meant to act against the major case of false negatives for TUTOR100
-* TUTOR2:
-    * TUTOR200 - asyncio.create_task requires the name parameter
-    * TUTOR210 - async function call either `await` or `async for` or `async with`
+* TUT101 - dataclasses.dataclass cannot be renamed in import
+    * Notes: this is meant to act against the major case of false negatives for TUT100
+* TUT2:
+    * TUT200 - asyncio.create_task requires the name parameter
+    * TUT210 - async function call either `await` or `async for` or `async with`
         * If the body of the function is either `pass` or immediately errors or immediately returns, the function is excused
         * It is expected that some class functions will fail this rule, but it still has utility
-    * TUTOR220 - no async function in a `catch` block that will catch a cancelled error or `finally` that is not one of `asyncio.wait_for`, `asyncio.wait` or `asyncio.sleep`, prevents running forever when task is cancelled
-* TUTOR300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
-* TUTOR4:
-    * TUTOR400 - detect strings that were likely meant to be f-strings
-    * TUTOR410 - detect redundant type annotations
-    * TUTOR411 - detect redundant type annotations for generic assignment
+    * TUT220 - no async function in a `catch` block that will catch a cancelled error or `finally` that is not one of `asyncio.wait_for`, `asyncio.wait` or `asyncio.sleep`, prevents running forever when task is cancelled
+* TUT300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
+* TUT4:
+    * TUT400 - detect strings that were likely meant to be f-strings
+    * TUT410 - detect redundant type annotations
+    * TUT411 - detect redundant type annotations for generic assignment
         * Don't do `x: Foo[bar] = Foo()` ; do `x = Foo[bar]()`
-* TUTOR5
-    * TUTOR500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
-    * TUTOR501 - class variables must be defined before all functions
-    * TUTOR502 - class variables must be type annotated
+* TUT5
+    * TUT500 (DEPRECATED: covered by 502/503 + mypy) - instance variables set in `__init__` cannot overlap with class variables
+    * TUT501 - class variables must be defined before all functions
+    * TUT502 - class variables must be type annotated
         * with exceptions for Enum and IntEnum
         * It is safe to ignore this rule in the case where the variable is inherited - this is hard to detect in flake though
-    * TUTOR503 - class variables must be annotated as class variables, with exceptions for:
+    * TUT503 - class variables must be annotated as class variables, with exceptions for:
         * dataclasses
         * NamedTuple
         * Protocol
         * Enum and IntEnum
         * TypedDict
-    * TUTOR510 - No two argument `super` within a class
-* TUTOR6
-    * TUTOR610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
-    * TUTOR620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
-* TUTOR7
-    * TUTOR700 - Prevent `os.path.<func>()` function calls
-    * TUTOR710 - Prevent `from os import path`
-    * TUTOR720 - Prevent `import os.path`
+    * TUT510 - No two argument `super` within a class
+* TUT6
+    * TUT610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
+    * TUT620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
+* TUT7
+    * TUT700 - Prevent `os.path.<func>()` function calls
+    * TUT710 - Prevent `from os import path`
+    * TUT720 - Prevent `import os.path`
 
 ## Future Ideas
 
@@ -60,5 +60,5 @@ To configure, in `setup.cfg`
 ```
 [flake8:local-plugins]
 extension = 
-    TUTOR = tutor_flake.plugin:TutorIntelligenceFlakePlugin
+    TUT = tutor_flake.plugin:TutorIntelligenceFlakePlugin
 ```

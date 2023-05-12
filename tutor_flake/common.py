@@ -9,7 +9,7 @@ class Flake8Error(NamedTuple):
     cls: type  # currently unused but required
 
     @classmethod
-    def construct(  # noqa: TUTOR610
+    def construct(  # noqa: TUT610
         cls,
         node: ast.AST,
         code: str,
@@ -17,7 +17,7 @@ class Flake8Error(NamedTuple):
         rule_cls: type,
     ) -> "Flake8Error":
         return Flake8Error(
-            node.lineno, node.col_offset, f"TUTOR{code} {description}", rule_cls
+            node.lineno, node.col_offset, f"TUT{code} {description}", rule_cls
         )
 
 

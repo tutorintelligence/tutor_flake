@@ -10,8 +10,8 @@ def foo() -> Any:
 def main() -> None:
     _ = asyncio.create_task(foo(), name="1")
     _ = create_task(foo(), name="1")
-    _ = asyncio.create_task(foo())  # noqa: TUTOR200
-    _ = create_task(foo())  # noqa: TUTOR200
+    _ = asyncio.create_task(foo())  # noqa: TUT200
+    _ = create_task(foo())  # noqa: TUT200
 
 
 async def use_async_context_manager() -> Any:
@@ -45,7 +45,7 @@ async def immediate_return() -> Any:
     return 0
 
 
-async def no_await() -> Any:  # noqa: TUTOR210
+async def no_await() -> Any:  # noqa: TUT210
     x = 4
     y = x + 3
 
@@ -59,22 +59,22 @@ async def try_catch_with_unsafe_async_handlers() -> Any:
     try:
         await foo()
     except (CancelledError, AssertionError):
-        await foo()  # noqa: TUTOR220
-        await asyncio.wait(foo())  # noqa: TUTOR220
+        await foo()  # noqa: TUT220
+        await asyncio.wait(foo())  # noqa: TUT220
         for _ in [1, 2, 3]:
-            await foo()  # noqa: TUTOR220
+            await foo()  # noqa: TUT220
     except (asyncio.CancelledError):
-        async for x in foo():  # noqa: TUTOR220
+        async for x in foo():  # noqa: TUT220
             return x
     except (asyncio.exceptions.CancelledError):
-        async with foo() as x:  # noqa: TUTOR220
+        async with foo() as x:  # noqa: TUT220
             return x
     except BaseException:
-        await foo()  # noqa: TUTOR220
+        await foo()  # noqa: TUT220
     except:  # noqa: E722
-        await foo()  # noqa: TUTOR220
+        await foo()  # noqa: TUT220
     finally:
-        await foo()  # noqa: TUTOR220
+        await foo()  # noqa: TUT220
 
 
 async def try_catch_with_safe_async_handlers() -> Any:

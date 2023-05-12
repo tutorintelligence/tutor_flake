@@ -6,11 +6,11 @@ from typing import ClassVar, List, NamedTuple, Protocol, TypeVar
 
 class DummyClass:
 
-    a: int = 4  # noqa: TUTOR503
-    b: float  # noqa: TUTOR503
-    c = "abc"  # noqa: TUTOR502
-    d = bool  # noqa: TUTOR502
-    e: "str" = "abc"  # noqa: TUTOR503
+    a: int = 4  # noqa: TUT503
+    b: float  # noqa: TUT503
+    c = "abc"  # noqa: TUT502
+    d = bool  # noqa: TUT502
+    e: "str" = "abc"  # noqa: TUT503
     f: ClassVar
     g: ClassVar[bool] = False
     h: ClassVar[List[bool]]
@@ -29,8 +29,8 @@ class DummyClass:
         # we allow this, but is still bad
         self.c = new_c
 
-    i: ClassVar[bool]  # noqa: TUTOR501
-    j = 3  # noqa: TUTOR501 TUTOR502
+    i: ClassVar[bool]  # noqa: TUT501
+    j = 3  # noqa: TUT501 TUT502
 
 
 class NT(NamedTuple):
@@ -47,10 +47,10 @@ class FooEnum(Enum):
 
 @dataclass
 class ExampleDataclass:
-    a = 3  # noqa: TUTOR502
+    a = 3  # noqa: TUT502
     x: int
     y: float
-    z = field(default=4)  # noqa: TUTOR502
+    z = field(default=4)  # noqa: TUT502
 
     Q = TypeVar("Q", bound="ExampleDataclass")
 
@@ -69,9 +69,9 @@ class ExampleDataclass:
 
 @dataclasses.dataclass
 class Example2:
-    a = 3  # noqa: TUTOR502
+    a = 3  # noqa: TUT502
 
 
 @dataclass(frozen=True)
 class Example3:
-    a = 4  # noqa: TUTOR502
+    a = 4  # noqa: TUT502
