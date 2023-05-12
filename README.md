@@ -11,6 +11,7 @@ Custom flake8 rules
 * TUT2:
     * TUT200 - asyncio.create_task requires the name parameter
     * TUT201 - asyncio.create_task is either `await`ed or assigned to a variable
+        * See `Important` [here](https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task) on garbage collection for motivation
     * TUT210 - async function call either `await` or `async for` or `async with`
         * If the body of the function is either `pass` or immediately errors or immediately returns, the function is excused
         * It is expected that some class functions will fail this rule, but it still has utility
