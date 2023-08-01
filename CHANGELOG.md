@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.18.0 (2023-08-01)
+### Feature
+* Prevent time.time and suggest alternatives ([#9](https://github.com/tutorintelligence/tutor_flake/issues/9)) ([`45bb875`](https://github.com/tutorintelligence/tutor_flake/commit/45bb875c669735d4b2a2dc9b4f604886b813a86b))
+
+### Documentation
+* Add motiviation for rule 201 ([`b23d25e`](https://github.com/tutorintelligence/tutor_flake/commit/b23d25e4ee9dc444d7d402b3ab3e256779d91b93))
+
 ## v0.17.0 (2023-05-12)
 ### Feature
 * Enforce that async tasks are not dropped ([`7d83116`](https://github.com/tutorintelligence/tutor_flake/commit/7d83116e3ec8483e1db86ff33ab302b5519b6bf0))
