@@ -23,13 +23,7 @@ class NoTimeDotTime:
 class NoFromTimeTimeImports:
     @classmethod
     def check(cls, node: ast.ImportFrom) -> Generator[Flake8Error, None, None]:
-        import_path_from_os_cond = node.module == "time" and any(
-            [name.name == "time" for name in node.names]
-        )
-        import_func_from_os_path_cond = (
-            isinstance(node.module, str) and "time.time" in node.module
-        )
-        if import_func_from_os_path_cond or import_path_from_os_cond:
+        if node.module == "time" and any([name.name == "time" for name in node.names]):
             yield Flake8Error.construct(
                 node,
                 "810",
