@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.18.1 (2023-08-01)
+### Fix
+* Allowing typing class variables as Final ([#10](https://github.com/tutorintelligence/tutor_flake/issues/10)) ([`58dc1f2`](https://github.com/tutorintelligence/tutor_flake/commit/58dc1f29a7fe0280c3f14e5542e4c9190c44f03e))
+
 ## v0.18.0 (2023-08-01)
 ### Feature
 * Prevent time.time and suggest alternatives ([#9](https://github.com/tutorintelligence/tutor_flake/issues/9)) ([`45bb875`](https://github.com/tutorintelligence/tutor_flake/commit/45bb875c669735d4b2a2dc9b4f604886b813a86b))
