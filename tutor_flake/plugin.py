@@ -32,6 +32,7 @@ from tutor_flake.rules.positional_args import (
 )
 from tutor_flake.rules.string import NoBracketInString
 from tutor_flake.rules.super import NoTwoArgumentSuper
+from tutor_flake.rules.time import NoFromTimeTimeImports, NoTimeDotTime
 
 
 @dataclass
@@ -141,6 +142,7 @@ class CustomVisitor(ast.NodeVisitor):
         return itertools.chain(
             DataclassRenamed.check(node),
             NoFromOSPathImports.check(node),
+            NoFromTimeTimeImports.check(node),
         )
 
     @visitor_decorator
@@ -165,7 +167,10 @@ class CustomVisitor(ast.NodeVisitor):
 
     @visitor_decorator
     def visit_Attribute(self, node: ast.Attribute) -> Iterable[Flake8Error]:
-        return NoOSPathAttrs.check(node)
+        return itertools.chain(
+            NoOSPathAttrs.check(node),
+            NoTimeDotTime.check(node),
+        )
 
     @visitor_decorator
     def visit_AnnAssign(self, node: ast.AnnAssign) -> Iterable[Flake8Error]:

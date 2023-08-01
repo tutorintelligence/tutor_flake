@@ -42,6 +42,10 @@ Custom flake8 rules
     * TUT700 - Prevent `os.path.<func>()` function calls
     * TUT710 - Prevent `from os import path`
     * TUT720 - Prevent `import os.path`
+* TUT8
+    * TUT800 - Prevent `time.time`
+        * Note: programmers often use `time.time` to extract time deltas in seconds, rather than actually fetching the numbers of seconds since the epoch.  This has tricky pitfalls, such as clock sync jumps and lack of monotonicity guarantees.
+    * TUT810 - Prevent `from time import time` (see TUT800)
 
 ## Future Ideas
 
