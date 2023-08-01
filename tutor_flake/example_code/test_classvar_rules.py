@@ -1,7 +1,7 @@
 import dataclasses
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import ClassVar, List, NamedTuple, Protocol, TypeVar
+from typing import ClassVar, Final, List, NamedTuple, Protocol, TypeVar
 
 
 class DummyClass:
@@ -14,6 +14,8 @@ class DummyClass:
     f: ClassVar
     g: ClassVar[bool] = False
     h: ClassVar[List[bool]]
+    i: Final = 3
+    j: Final[bool] = True
 
     def __init__(self, value: float) -> None:
         pass
@@ -29,8 +31,8 @@ class DummyClass:
         # we allow this, but is still bad
         self.c = new_c
 
-    i: ClassVar[bool]  # noqa: TUT501
-    j = 3  # noqa: TUT501 TUT502
+    k: ClassVar[bool]  # noqa: TUT501
+    m = 3  # noqa: TUT501 TUT502
 
 
 class NT(NamedTuple):

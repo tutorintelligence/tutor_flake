@@ -28,7 +28,7 @@ Custom flake8 rules
     * TUT502 - class variables must be type annotated
         * with exceptions for Enum and IntEnum
         * It is safe to ignore this rule in the case where the variable is inherited - this is hard to detect in flake though
-    * TUT503 - class variables must be annotated as class variables, with exceptions for:
+    * TUT503 - class variables must be annotated as ClassVar or Final, with exceptions for:
         * dataclasses
         * NamedTuple
         * Protocol
