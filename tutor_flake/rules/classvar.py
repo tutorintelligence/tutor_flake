@@ -38,11 +38,14 @@ class ClassvarCheck:
 
                     elif not cls.is_class_exempt_from_class_var_type_annotations(
                         node
-                    ) and not check_annotation(child, "ClassVar"):
+                    ) and not (
+                        check_annotation(child, "ClassVar")
+                        or check_annotation(child, "Final")
+                    ):
                         yield Flake8Error.construct(
                             child,
                             "503",
-                            "Class variable must be type annotated with `ClassVar`",
+                            "Class variable must be type annotated with `ClassVar` or `Final`",
                             cls,
                         )
 
