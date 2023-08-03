@@ -21,10 +21,16 @@ class Flake8Error(NamedTuple):
         )
 
 
-def check_name_or_attribute(node: ast.AST, *name_or_attr: str) -> bool:
-    return (isinstance(node, ast.Name) and node.id in name_or_attr) or (
-        isinstance(node, ast.Attribute) and node.attr in name_or_attr
-    )
+def check_name_or_attribute(node: ast.AST, *name_or_attrs: str) -> bool:
+    return check_name(node, *name_or_attrs) or check_attribute(node, *name_or_attrs)
+
+
+def check_name(node: ast.AST, *names: str) -> bool:
+    return isinstance(node, ast.Name) and node.id in names
+
+
+def check_attribute(node: ast.AST, *attrs: str) -> bool:
+    return isinstance(node, ast.Attribute) and node.attr in attrs
 
 
 def has_keyword(call: ast.Call, keyword: str) -> bool:

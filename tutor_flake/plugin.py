@@ -13,6 +13,7 @@ from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
 from tutor_flake.rules.asyncio import (
     AsyncFunctionsAreAsynchronous,
+    CancelPassedMessage,
     CreateTaskIsAssigned,
     CreateTaskRequireName,
     HandlersAreSafeForCancelledErrors,
@@ -153,6 +154,7 @@ class CustomVisitor(ast.NodeVisitor):
                 node, self.config.max_invocation_positional_args
             ),
             NoTwoArgumentSuper.check(node, self.parents),
+            CancelPassedMessage.check(node),
         )
 
     @visitor_decorator

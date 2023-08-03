@@ -122,3 +122,35 @@ async def try_catch_with_async_handlers_in_safe_exceptions() -> Any:
         await foo()
     except Exception:
         await foo()
+
+
+def cancel() -> None:
+    ...
+
+
+def test_cancel_rules() -> None:
+    cancel()  # does not error because not an attribute
+
+    Foo = foo()
+
+    # standard illegal calls
+    Foo.cancel()  # noqa: TUT230
+    Foo.cancel(None)  # noqa: TUT230
+    Foo.cancel(msg=None)  # noqa: TUT230
+
+    # standard legal calls
+    Foo.cancel(msg="")
+    Foo.cancel("")
+
+    # calls which do not match the spec of cancel
+    Foo.cancel(bar=3)
+    Foo.cancel(bar=3, baz=1)
+    Foo.cancel(bar=3, msg=None)
+
+    Foo.cancel(3, msg=None)
+    Foo.cancel(3, bar=None)
+
+    Foo.cancel(3, 4)
+    Foo.cancel(None, None)
+
+    cancel()
