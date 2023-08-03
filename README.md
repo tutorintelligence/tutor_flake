@@ -16,6 +16,8 @@ Custom flake8 rules
         * If the body of the function is either `pass` or immediately errors or immediately returns, the function is excused
         * It is expected that some class functions will fail this rule, but it still has utility
     * TUT220 - no async function in a `catch` block that will catch a cancelled error or `finally` that is not one of `asyncio.wait_for`, `asyncio.wait` or `asyncio.sleep`, prevents running forever when task is cancelled
+    * TUT230 - any call to `cancel` is passed a message (that is not a `None` literal)
+        * This is a highly opinionated as it assumes that any `cancel` call that matches the spec of `asyncio.Task.cancel` is on a task.  To enforce this properly you would use typing, but that is a more aggressive step to take
 * TUT300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUT4:
     * TUT400 - detect strings that were likely meant to be f-strings
@@ -54,6 +56,8 @@ Custom flake8 rules
 * No adjacent positional arguments with same typing - unless positional only
 * No addition of string literals (or f-strings)
 * Should we also forbid `os.walk`
+* Fixtures must end in `_fixt`
+* Constants must be uppercase
 
 ## Installation and Configuration
 

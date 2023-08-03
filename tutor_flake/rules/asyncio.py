@@ -1,7 +1,12 @@
 import ast
 from typing import Generator, Iterable, Optional
 
-from tutor_flake.common import Flake8Error, check_name_or_attribute, has_keyword
+from tutor_flake.common import (
+    Flake8Error,
+    check_attribute,
+    check_name_or_attribute,
+    has_keyword,
+)
 
 
 class CreateTaskRequireName:
@@ -128,3 +133,44 @@ class HandlersAreSafeForCancelledErrors:
         return check_name_or_attribute(node.func, "wait") and any(
             kwarg.arg == "timeout" for kwarg in node.keywords
         )
+
+
+class CancelPassedMessage:
+    @classmethod
+    def check(cls, invocation: ast.Call) -> Generator[Flake8Error, None, None]:
+        if check_attribute(invocation.func, "cancel"):
+            args = invocation.args
+            kwargs = invocation.keywords
+            total_arg_num = len(args) + len(kwargs)
+            if total_arg_num > 1:
+                # too many arguments, does not match the spec of asyncio.cancel
+                return
+            elif total_arg_num == 0:
+                yield Flake8Error.construct(
+                    invocation,
+                    "230",
+                    "A call presumed to be `cancel` on an asyncio.Task was made without providing a message",
+                    cls,
+                )
+            elif len(args) == 1 and cls._is_parameter_None_literal(args[0]):
+                yield Flake8Error.construct(
+                    invocation,
+                    "230",
+                    "A call presumed to be `cancel` on an asyncio.Task was made with a `None` messsage",
+                    cls,
+                )
+            elif (
+                len(kwargs) == 1
+                and (kwarg := kwargs[0]).arg == "msg"
+                and cls._is_parameter_None_literal(kwarg.value)
+            ):
+                yield Flake8Error.construct(
+                    invocation,
+                    "230",
+                    "A call presumed to be `cancel` on an asyncio.Task was made with a `None` messsage",
+                    cls,
+                )
+
+    @classmethod
+    def _is_parameter_None_literal(cls, parameter: ast.expr) -> bool:
+        return isinstance(parameter, ast.Constant) and parameter.value is None
