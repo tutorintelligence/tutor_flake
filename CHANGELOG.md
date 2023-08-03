@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.19.0 (2023-08-03)
+### Feature
+* Require passing msgs to cancel calls ([#11](https://github.com/tutorintelligence/tutor_flake/issues/11)) ([`c32e550`](https://github.com/tutorintelligence/tutor_flake/commit/c32e5504803e49f004624dd020f914ac1a722a87))
+
 ## v0.18.1 (2023-08-01)
 ### Fix
 * Allowing typing class variables as Final ([#10](https://github.com/tutorintelligence/tutor_flake/issues/10)) ([`58dc1f2`](https://github.com/tutorintelligence/tutor_flake/commit/58dc1f29a7fe0280c3f14e5542e4c9190c44f03e))
