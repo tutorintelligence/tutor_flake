@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.20.1 (2023-08-28)
+### Fix
+* Allow no super inits in generics ([`e352982`](https://github.com/tutorintelligence/tutor_flake/commit/e352982ad928d33001bb935d82b2b4f5e1e8099a))
+
 ## v0.20.0 (2023-08-28)
 ### Feature
 * Enforce init and post_init are called in subclasses ([#12](https://github.com/tutorintelligence/tutor_flake/issues/12)) ([`f35e5ba`](https://github.com/tutorintelligence/tutor_flake/commit/f35e5bad60ac48fb6022a5b55ba7652a9c3da98c))
