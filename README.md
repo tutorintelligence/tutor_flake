@@ -37,6 +37,7 @@ Custom flake8 rules
         * Enum and IntEnum
         * TypedDict
     * TUT510 - No two argument `super` within a class
+    * TUT511 - A child class must call a parent classes method for `__init__` and `__post_init__`
 * TUT6
     * TUT610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUT620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)

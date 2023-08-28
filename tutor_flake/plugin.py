@@ -32,7 +32,7 @@ from tutor_flake.rules.positional_args import (
     MaxPostionalArgsInFunctionDef,
 )
 from tutor_flake.rules.string import NoBracketInString
-from tutor_flake.rules.super import NoTwoArgumentSuper
+from tutor_flake.rules.super import ChildClassCallsSuperMethods, NoTwoArgumentSuper
 from tutor_flake.rules.time import NoFromTimeTimeImports, NoTimeDotTime
 
 
@@ -112,8 +112,9 @@ class CustomVisitor(ast.NodeVisitor):
     def __init__(self, config: TutorFlakeConfig) -> None:
         self.errors: List[Flake8Error] = []
         self.config = config
-
         self.parents: List[ast.AST] = []
+
+        super().__init__()
 
     @property
     def parent(self) -> Optional[ast.AST]:
@@ -163,8 +164,11 @@ class CustomVisitor(ast.NodeVisitor):
 
     @visitor_decorator
     def visit_FunctionDef(self, node: ast.FunctionDef) -> Iterable[Flake8Error]:
-        return MaxPostionalArgsInFunctionDef.check(
-            node, self.config.max_definition_positional_args
+        return itertools.chain(
+            MaxPostionalArgsInFunctionDef.check(
+                node, self.config.max_definition_positional_args
+            ),
+            ChildClassCallsSuperMethods.check(node, self.parents),
         )
 
     @visitor_decorator
