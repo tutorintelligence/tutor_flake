@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.20.0 (2023-08-28)
+### Feature
+* Enforce init and post_init are called in subclasses ([#12](https://github.com/tutorintelligence/tutor_flake/issues/12)) ([`f35e5ba`](https://github.com/tutorintelligence/tutor_flake/commit/f35e5bad60ac48fb6022a5b55ba7652a9c3da98c))
+
 ## v0.19.0 (2023-08-03)
 ### Feature
 * Require passing msgs to cancel calls ([#11](https://github.com/tutorintelligence/tutor_flake/issues/11)) ([`c32e550`](https://github.com/tutorintelligence/tutor_flake/commit/c32e5504803e49f004624dd020f914ac1a722a87))
