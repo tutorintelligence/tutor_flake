@@ -23,13 +23,15 @@ class NoTwoArgumentSuper:
             )
 
 
-def get_non_generic_bases(class_def: ast.ClassDef) -> List[ast.expr]:
+def get_real_bases(class_def: ast.ClassDef) -> List[ast.expr]:
     return [
         base
         for base in class_def.bases
         if not (
             isinstance(base, ast.Subscript)
-            and check_name_or_attribute(base.value, "Generic")
+            and check_name_or_attribute(  # noqa: TUT620
+                base.value, "Generic", "ABC", "Protocol", "abc"
+            )
         )
     ]
 
@@ -57,7 +59,7 @@ class ChildClassCallsSuperMethods:
             )
             if (
                 class_definition is not None
-                and len(get_non_generic_bases(class_definition)) > 0
+                and len(get_real_bases(class_definition)) > 0
             ):
                 for statement in func.body:
                     if (
