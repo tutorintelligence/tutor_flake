@@ -1,3 +1,5 @@
+from abc import ABC
+from collections import abc
 from typing import Generic, TypeVar
 
 
@@ -52,7 +54,7 @@ T = TypeVar("T")
 U = TypeVar("U")
 
 
-class Bar4(Generic[T, U]):
+class Bar4(abc.Mapping[int, int], ABC, Generic[T, U]):
     def __init__(self) -> None:
         self.foo = 3
 

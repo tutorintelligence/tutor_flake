@@ -21,6 +21,14 @@ class Flake8Error(NamedTuple):
         )
 
 
+def recursive_check_name_or_attribute(node: ast.AST, *name_or_attrs: str) -> bool:
+    if isinstance(node, ast.Attribute):
+        return check_attribute(
+            node, *name_or_attrs
+        ) or recursive_check_name_or_attribute(node.value, *name_or_attrs)
+    return check_name(node, *name_or_attrs)
+
+
 def check_name_or_attribute(node: ast.AST, *name_or_attrs: str) -> bool:
     return check_name(node, *name_or_attrs) or check_attribute(node, *name_or_attrs)
 

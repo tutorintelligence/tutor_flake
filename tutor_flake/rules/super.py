@@ -1,7 +1,11 @@
 import ast
 from typing import Generator, List
 
-from tutor_flake.common import Flake8Error, check_any_parent, check_name_or_attribute
+from tutor_flake.common import (
+    Flake8Error,
+    check_any_parent,
+    recursive_check_name_or_attribute,
+)
 
 
 def is_call_super(call: ast.Call) -> bool:
@@ -24,13 +28,16 @@ class NoTwoArgumentSuper:
 
 
 def get_real_bases(class_def: ast.ClassDef) -> List[ast.expr]:
+    names = ("Generic", "ABC", "Protocol", "abc")
+
     return [
         base
         for base in class_def.bases
         if not (
-            isinstance(base, ast.Subscript)
-            and check_name_or_attribute(  # noqa: TUT620
-                base.value, "Generic", "ABC", "Protocol", "abc"
+            recursive_check_name_or_attribute(base, *names)
+            or (
+                isinstance(base, ast.Subscript)
+                and recursive_check_name_or_attribute(base.value, *names)
             )
         )
     ]
