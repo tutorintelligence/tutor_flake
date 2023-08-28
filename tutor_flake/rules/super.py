@@ -1,7 +1,7 @@
 import ast
 from typing import Generator, List
 
-from tutor_flake.common import Flake8Error, check_any_parent
+from tutor_flake.common import Flake8Error, check_any_parent, check_name_or_attribute
 
 
 def is_call_super(call: ast.Call) -> bool:
@@ -21,6 +21,17 @@ class NoTwoArgumentSuper:
             yield Flake8Error.construct(
                 call, "510", "Do not use two argument super within a class", cls
             )
+
+
+def get_non_generic_bases(class_def: ast.ClassDef) -> List[ast.expr]:
+    return [
+        base
+        for base in class_def.bases
+        if not (
+            isinstance(base, ast.Subscript)
+            and check_name_or_attribute(base.value, "Generic")
+        )
+    ]
 
 
 class ChildClassCallsSuperMethods:
@@ -44,7 +55,10 @@ class ChildClassCallsSuperMethods:
                 ),
                 None,
             )
-            if class_definition is not None and len(class_definition.bases) > 0:
+            if (
+                class_definition is not None
+                and len(get_non_generic_bases(class_definition)) > 0
+            ):
                 for statement in func.body:
                     if (
                         isinstance(statement, ast.Expr)

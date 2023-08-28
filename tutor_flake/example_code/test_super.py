@@ -1,3 +1,6 @@
+from typing import Generic, TypeVar
+
+
 class Foo:
     def __init__(self) -> None:
         super(Foo, self).__init__()  # noqa: TUT510
@@ -25,7 +28,17 @@ class Bar1(Foo):
         super().__init__()
 
 
-class Bar2:
+class Bar2(Foo):
+    def __init__(self) -> None:
+        self.foo = 3
+        super().__init__()
+
+    def __post_init__(self) -> None:
+        self.foo = 3
+        super().__post_init__()  # type: ignore
+
+
+class Bar3:
     """No call to super necessary because not inherited"""
 
     def __init__(self) -> None:
@@ -35,11 +48,13 @@ class Bar2:
         self.foo = 3
 
 
-class Bar3(Foo):
+T = TypeVar("T")
+U = TypeVar("U")
+
+
+class Bar4(Generic[T, U]):
     def __init__(self) -> None:
         self.foo = 3
-        super().__init__()
 
     def __post_init__(self) -> None:
         self.foo = 3
-        super().__post_init__()  # type: ignore
