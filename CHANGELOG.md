@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.20.2 (2023-08-28)
+### Fix
+* Broaden excluded classes from super init enforcement ([`e21baef`](https://github.com/tutorintelligence/tutor_flake/commit/e21baef7317698b073917dc7d863b84bca819923))
+
 ## v0.20.1 (2023-08-28)
 ### Fix
 * Allow no super inits in generics ([`e352982`](https://github.com/tutorintelligence/tutor_flake/commit/e352982ad928d33001bb935d82b2b4f5e1e8099a))
