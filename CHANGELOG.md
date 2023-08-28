@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.20.3 (2023-08-28)
+### Fix
+* Actually broaden excluded classes from super init enforcement ([`533df68`](https://github.com/tutorintelligence/tutor_flake/commit/533df68c6b9284fa0e5433f6033eec93123cdbe8))
+
 ## v0.20.2 (2023-08-28)
 ### Fix
 * Broaden excluded classes from super init enforcement ([`e21baef`](https://github.com/tutorintelligence/tutor_flake/commit/e21baef7317698b073917dc7d863b84bca819923))

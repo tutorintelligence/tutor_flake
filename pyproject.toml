@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tutor_flake"
-version = "0.20.2"
+version = "0.20.3"
 description = "Custom flake rules for use in tutor intelligence"
 authors = ["Jack Strang <jack@tutorintelligence.com>"]
 license = "MIT"
