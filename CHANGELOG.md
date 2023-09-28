@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.21.0 (2023-09-28)
+### Feature
+* Enforce reasonable use of NotImplemented ([#13](https://github.com/tutorintelligence/tutor_flake/issues/13)) ([`c6eff7b`](https://github.com/tutorintelligence/tutor_flake/commit/c6eff7bcef423f14a0abe9ca6268faca4efc459f))
+
 ## v0.20.3 (2023-08-28)
 ### Fix
 * Actually broaden excluded classes from super init enforcement ([`533df68`](https://github.com/tutorintelligence/tutor_flake/commit/533df68c6b9284fa0e5433f6033eec93123cdbe8))
