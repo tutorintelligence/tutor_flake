@@ -1,6 +1,6 @@
 import ast
 import itertools
-from _ast import Expr
+from _ast import Expr, Name
 from argparse import Namespace
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -22,6 +22,7 @@ from tutor_flake.rules.classvar import ClassvarCheck
 from tutor_flake.rules.compact_generic import CompactGeneric
 from tutor_flake.rules.dataclass import DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
+from tutor_flake.rules.not_implemented import NotImplementedCheck
 from tutor_flake.rules.os_path import (
     NoFromOSPathImports,
     NoOSPathAttrs,
@@ -112,6 +113,8 @@ class CustomVisitor(ast.NodeVisitor):
     def __init__(self, config: TutorFlakeConfig) -> None:
         self.errors: List[Flake8Error] = []
         self.config = config
+        # list of parent nodes of the currently visited node
+        # with the most immediate parent last
         self.parents: List[ast.AST] = []
 
         super().__init__()
@@ -199,3 +202,7 @@ class CustomVisitor(ast.NodeVisitor):
     @visitor_decorator
     def visit_Expr(self, node: Expr) -> Iterable[Flake8Error]:
         return CreateTaskIsAssigned.check(node)
+
+    @visitor_decorator
+    def visit_Name(self, node: Name) -> Iterable[Flake8Error]:
+        return NotImplementedCheck.check(node, self.parents)
