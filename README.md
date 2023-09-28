@@ -38,6 +38,8 @@ Custom flake8 rules
         * TypedDict
     * TUT510 - No two argument `super` within a class
     * TUT511 - A child class must call a parent classes method for `__init__` and `__post_init__`
+    * TUT520 - `NotImplemented` is only allowed within a dunder method on a class
+        * Any other usage is very likely incorrect
 * TUT6
     * TUT610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUT620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
