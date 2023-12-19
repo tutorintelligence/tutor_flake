@@ -36,6 +36,7 @@ Custom flake8 rules
         * Protocol
         * Enum and IntEnum
         * TypedDict
+        * pydantic BaseModel and pydantic-numpy NumpyModel
     * TUT510 - No two argument `super` within a class
     * TUT511 - A child class must call a parent classes method for `__init__` and `__post_init__`
     * TUT520 - `NotImplemented` is only allowed within a dunder method on a class

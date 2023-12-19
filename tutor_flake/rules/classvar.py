@@ -61,5 +61,12 @@ class ClassvarCheck:
         cls, node: ast.ClassDef
     ) -> bool:
         return is_dataclass(node) or check_is_subclass(  # noqa: TUT620
-            node, "NamedTuple", "Protocol", "Enum", "IntEnum", "TypedDict"
+            node,
+            "NamedTuple",
+            "Protocol",
+            "Enum",
+            "IntEnum",
+            "TypedDict",
+            "BaseModel",
+            "NumpyModel",
         )
