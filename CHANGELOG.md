@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.22.0 (2023-12-19)
+### Feature
+* Added carveout from classvar rule for pydantic BaseModel ([#14](https://github.com/tutorintelligence/tutor_flake/issues/14)) ([`5f74626`](https://github.com/tutorintelligence/tutor_flake/commit/5f7462673f928cd96533a40067dcfae64df76272))
+
 ## v0.21.0 (2023-09-28)
 ### Feature
 * Enforce reasonable use of NotImplemented ([#13](https://github.com/tutorintelligence/tutor_flake/issues/13)) ([`c6eff7b`](https://github.com/tutorintelligence/tutor_flake/commit/c6eff7bcef423f14a0abe9ca6268faca4efc459f))
