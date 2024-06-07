@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.23.1 (2024-06-07)
+### Fix
+* Max positional args in async function def ([#16](https://github.com/tutorintelligence/tutor_flake/issues/16)) ([`21c83d8`](https://github.com/tutorintelligence/tutor_flake/commit/21c83d8cbbac8411eb9a66f35548f86321c0d1eb))
+
 ## v0.23.0 (2024-06-07)
 ### Feature
 * Separate error for missing super calls and better configurability ([#15](https://github.com/tutorintelligence/tutor_flake/issues/15)) ([`f8674b7`](https://github.com/tutorintelligence/tutor_flake/commit/f8674b7413b4941b5850b0b2d454e71bf2d4e005))
