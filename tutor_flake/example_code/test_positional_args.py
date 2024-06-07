@@ -1,6 +1,9 @@
 # type: ignore
 
 
+from ast import TypeVar
+
+
 def func_1(a, b, c, d, e=3) -> int:  # noqa: TUT610
     pass
 
@@ -55,5 +58,44 @@ async def g() -> None:
 # Test consecutive typing
 
 
-async def c_1(a: int, b: int) -> None:
+async def a_c_1(a: int, b: int):  # noqa: TUT630
+    ...
+
+
+def c_1(a: int, b: int):  # noqa: TUT630
+    ...
+
+
+def c_2(a: "int", b: "int"):  # noqa: TUT630
+    ...
+
+
+def c_3(a: list[int], b: list[int]):  # noqa: TUT630
+    ...
+
+
+T = TypeVar("T")
+
+
+def c_4(a: T, b: T):  # noqa: TUT630
+    ...
+
+
+def c_5(a: list[T], b: list[T]):  # noqa: TUT630
+    ...
+
+
+def c_6(a, b: int, c: int, d: float):  # noqa: TUT610 TUT630
+    ...
+
+
+def c_7(a: int, b: int, /, c: int, *, d: int, e: int):
+    ...
+
+
+def c_8(a: int, b: float, c: int, d: float):  # noqa: TUT610
+    ...
+
+
+def c_9(a: int, *b: int):
     ...

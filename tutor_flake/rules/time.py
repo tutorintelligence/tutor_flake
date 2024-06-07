@@ -14,7 +14,7 @@ class NoTimeDotTime:
         ):
             yield Flake8Error.construct(
                 attr,
-                "800",
+                800,
                 "time.time() can jump and is not monotonic: are you sure it is what you want?",
                 cls,
             )

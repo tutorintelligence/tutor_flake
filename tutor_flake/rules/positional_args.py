@@ -65,7 +65,7 @@ class ConsecutiveSameTypedPositionalArgs:
         for arg_1, arg_2 in itertools.pairwise(func.args.args):
             annotation_1, annotation_2 = arg_1.annotation, arg_2.annotation
             if annotation_1 is not None and annotation_2 is not None:
-                if annotation_1 == annotation_2:
+                if ast.dump(annotation_1) == ast.dump(annotation_2):
                     yield Flake8Error.construct(
                         func,
                         "630",
@@ -73,10 +73,3 @@ class ConsecutiveSameTypedPositionalArgs:
                         f" with identical typing: `{arg_1.arg}` and `{arg_2.arg}`",
                         cls,
                     )
-            if annotation_1 is None:
-                yield Flake8Error.construct(
-                    func,
-                    "630",
-                    f"Annotation issue: {repr(arg_1)} {annotation_1} {arg_1.type_comment} {arg_1._fields}",
-                    cls,
-                )
