@@ -1,4 +1,5 @@
 import ast
+import itertools
 from typing import Generator, Optional
 
 from tutor_flake.common import Flake8Error
@@ -19,7 +20,7 @@ class MaxPostionalArgsInFunctionDef:
         if num_positional > max_positional:
             yield Flake8Error.construct(
                 func,
-                "610",
+                610,
                 f"function {func.name} allows for {num_positional} positional arguments,"
                 f" a max of {max_positional} is permitted",
                 cls,
@@ -48,8 +49,27 @@ class MaxPositionalArgsInInvocation:
         if len(invocation.args) > max_positional:
             yield Flake8Error.construct(
                 invocation,
-                "620",
+                620,
                 f"function called with {len(invocation.args)} positional arguments,"
                 f" a max of {max_positional} is permitted",
                 cls,
             )
+
+
+class ConsecutiveSameTypedPositionalArgs:
+    @classmethod
+    def check(
+        cls, func: ast.FunctionDef | ast.AsyncFunctionDef
+    ) -> Generator[Flake8Error, None, None]:
+        # do not look at posonlyargs or kwonlyargs
+        for arg_1, arg_2 in itertools.pairwise(func.args.args):
+            annotation_1, annotation_2 = arg_1.annotation, arg_2.annotation
+            if annotation_1 is not None and annotation_2 is not None:
+                if ast.dump(annotation_1) == ast.dump(annotation_2):
+                    yield Flake8Error.construct(
+                        func,
+                        630,
+                        "function called with two consecutive positional arguments"
+                        f" with identical typing: `{arg_1.arg}` and `{arg_2.arg}`",
+                        cls,
+                    )

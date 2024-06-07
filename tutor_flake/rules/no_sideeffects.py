@@ -21,7 +21,7 @@ class NoSideeffects:
                 errors.append(
                     Flake8Error.construct(
                         child,
-                        "300",
+                        300,
                         "found an expression in the main module body",
                         cls,
                     )

@@ -12,7 +12,7 @@ class Flake8Error(NamedTuple):
     def construct(  # noqa: TUT610
         cls,
         node: ast.AST,
-        code: str,
+        code: int,
         description: str,
         rule_cls: type,
     ) -> "Flake8Error":
@@ -77,7 +77,7 @@ def check_is_subclass(node: ast.ClassDef, *name_or_attr: str) -> bool:
     return any(check_name_or_attribute(base, *name_or_attr) for base in node.bases)
 
 
-def check_name_equality(name: ast.Name, other: ast.Name) -> bool:
+def check_name_equality(name: ast.Name, other: ast.Name, /) -> bool:
     return name.id == other.id and name.ctx == other.ctx
 
 

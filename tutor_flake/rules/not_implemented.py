@@ -21,7 +21,7 @@ class NotImplementedCheck:
                 if not parent.name.startswith("__") or not parent.name.endswith("__"):
                     return Flake8Error.construct(
                         node,
-                        "520",
+                        520,
                         "You are using NotImplemented in a non-dunder"
                         f" function call: `{parent.name}`. {STANDARD_MSG}",
                         cls,
@@ -29,7 +29,7 @@ class NotImplementedCheck:
                 elif not check_any_parent(parents[parent_i + 1 :], ast.ClassDef):
                     return Flake8Error.construct(
                         node,
-                        "520",
+                        520,
                         "You are using NotImplemented in a dunder function"
                         f" call outside of a class. {STANDARD_MSG}",
                         cls,
@@ -38,7 +38,7 @@ class NotImplementedCheck:
         else:
             return Flake8Error.construct(
                 node,
-                "520",
+                520,
                 f"You are using NotImplemented outside of a function call. {STANDARD_MSG}",
                 cls,
             )

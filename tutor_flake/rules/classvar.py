@@ -21,7 +21,7 @@ class ClassvarCheck:
                     if function_seen:
                         yield Flake8Error.construct(
                             child,
-                            "501",
+                            501,
                             f"Class variable `{target.id}` instantiated after methods",  # type: ignore
                             cls,
                         )
@@ -31,7 +31,7 @@ class ClassvarCheck:
                     if isinstance(child, ast.Assign):
                         yield Flake8Error.construct(
                             child,
-                            "502",
+                            502,
                             "Class variable must be type annotated",
                             cls,
                         )
@@ -44,7 +44,7 @@ class ClassvarCheck:
                     ):
                         yield Flake8Error.construct(
                             child,
-                            "503",
+                            503,
                             "Class variable must be type annotated with `ClassVar` or `Final`",
                             cls,
                         )
