@@ -29,6 +29,7 @@ from tutor_flake.rules.os_path import (
     NoOSPathImports,
 )
 from tutor_flake.rules.positional_args import (
+    ConsecutiveSameTypedPositionalArgs,
     MaxPositionalArgsInInvocation,
     MaxPostionalArgsInFunctionDef,
 )
@@ -182,6 +183,7 @@ class CustomVisitor(ast.NodeVisitor):
             MaxPostionalArgsInFunctionDef.check(
                 node, self.config.max_definition_positional_args
             ),
+            ConsecutiveSameTypedPositionalArgs.check(node),
             ChildClassCallsSuperMethods.check(
                 node, self.parents, self.config.non_init_classes
             ),
@@ -206,6 +208,7 @@ class CustomVisitor(ast.NodeVisitor):
             MaxPostionalArgsInFunctionDef.check(
                 node, self.config.max_definition_positional_args
             ),
+            ConsecutiveSameTypedPositionalArgs.check(node),
             AsyncFunctionsAreAsynchronous.check(node),
         )
 

@@ -70,6 +70,13 @@ class ConsecutiveSameTypedPositionalArgs:
                         func,
                         "630",
                         "function called with two consecutive positional arguments"
-                        f" with identical typing: {arg_1.arg} and {arg_2.arg}",
+                        f" with identical typing: `{arg_1.arg}` and `{arg_2.arg}`",
                         cls,
                     )
+            if annotation_1 is None:
+                yield Flake8Error.construct(
+                    func,
+                    "630",
+                    f"Annotation issue: {repr(arg_1)} {annotation_1} {arg_1.type_comment} {arg_1._fields}",
+                    cls,
+                )

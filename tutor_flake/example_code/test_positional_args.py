@@ -50,3 +50,10 @@ f = func_5(0, 1, 2, 3, 4)  # noqa: TUT620
 
 async def g() -> None:
     await afunc_1(0, 1, 2, 3, 4)  # noqa: TUT620
+
+
+# Test consecutive typing
+
+
+async def c_1(a: int, b: int) -> None:
+    ...
