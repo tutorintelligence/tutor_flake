@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.23.0 (2024-06-07)
+### Feature
+* Separate error for missing super calls and better configurability ([#15](https://github.com/tutorintelligence/tutor_flake/issues/15)) ([`f8674b7`](https://github.com/tutorintelligence/tutor_flake/commit/f8674b7413b4941b5850b0b2d454e71bf2d4e005))
+
 ## v0.22.0 (2023-12-19)
 ### Feature
 * Added carveout from classvar rule for pydantic BaseModel ([#14](https://github.com/tutorintelligence/tutor_flake/issues/14)) ([`5f74626`](https://github.com/tutorintelligence/tutor_flake/commit/5f7462673f928cd96533a40067dcfae64df76272))
