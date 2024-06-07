@@ -22,7 +22,7 @@ class Bar1(Foo):
         super().foo()  # type: ignore
         super().__post_init__()  # type: ignore
 
-    def __post_init__(self) -> None:  # noqa: TUT511
+    def __post_init__(self) -> None:  # noqa: TUT512
         self.foo = 4
         super().__post_init__  # type: ignore
         super.__post_init__()  # type: ignore
@@ -59,4 +59,15 @@ class Bar4(abc.Mapping[int, int], ABC, Generic[T, U]):
         self.foo = 3
 
     def __post_init__(self) -> None:
+        self.foo = 3
+
+
+class NonInit1:
+    ...
+
+
+class Bar5(NonInit1):
+    """No call to super because configuration excluded the class"""
+
+    def __init__(self) -> None:
         self.foo = 3

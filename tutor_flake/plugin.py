@@ -41,6 +41,7 @@ from tutor_flake.rules.time import NoFromTimeTimeImports, NoTimeDotTime
 class TutorFlakeConfig:
     max_definition_positional_args: int
     max_invocation_positional_args: int
+    non_init_classes: list[str]
 
     @staticmethod
     def add_options(option_manager: OptionManager) -> None:
@@ -62,12 +63,22 @@ class TutorFlakeConfig:
             required=False,
             parse_from_config=True,
         )
+        option_manager.add_option(
+            short_option_name="-ninitcls",
+            long_option_name="--non_init_classes",
+            default=[],
+            comma_separated_list=True,
+            parse_from_config=True,
+            normalize_paths=True,
+            help="Classes that are known to not have a meaningful `__init__`",
+        )
 
     @classmethod
     def parse_options(cls, options: Namespace) -> "TutorFlakeConfig":
         return TutorFlakeConfig(
             options.max_definition_positional_args,
             options.max_invocation_positional_args,
+            options.non_init_classes,
         )
 
 
@@ -171,7 +182,9 @@ class CustomVisitor(ast.NodeVisitor):
             MaxPostionalArgsInFunctionDef.check(
                 node, self.config.max_definition_positional_args
             ),
-            ChildClassCallsSuperMethods.check(node, self.parents),
+            ChildClassCallsSuperMethods.check(
+                node, self.parents, self.config.non_init_classes
+            ),
         )
 
     @visitor_decorator
