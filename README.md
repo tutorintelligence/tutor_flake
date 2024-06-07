@@ -43,12 +43,13 @@ Custom flake8 rules
         * Additional classes to skip are configurable with `non-init-classes`
     * TUT512 - A child class must call a parent classes method for `__post_init__`
         * All the same exceptions as 511
-
     * TUT520 - `NotImplemented` is only allowed within a dunder method on a class
         * Any other usage is very likely incorrect
 * TUT6
     * TUT610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUT620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)
+    * TUT630 - a function definition has two consecutive positional arguments with identical typing
+        * Positional only or key word only arguments are excluded
 * TUT7
     * TUT700 - Prevent `os.path.<func>()` function calls
     * TUT710 - Prevent `from os import path`

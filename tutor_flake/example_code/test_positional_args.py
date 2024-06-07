@@ -1,40 +1,43 @@
-def func_1(a: int, b: int, c: int, d: int, e: int = 3) -> int:  # noqa: TUT610
+# type: ignore
+
+
+def func_1(a, b, c, d, e=3) -> int:  # noqa: TUT610
     pass
 
 
-async def afunc_1(a: int, b: int, c: int, d: int, e: int = 3) -> int:  # noqa: TUT610
+async def afunc_1(a, b, c, d, e=3) -> int:  # noqa: TUT610
     pass
 
 
-def func_2(a: int, b: int, c: int, *, d: int) -> int:
+def func_2(a, b, c, *, d) -> int:
     pass
 
 
-def func_3(a: int, b: int, c: int, d: int = 3) -> int:
+def func_3(a, b, c, d=3) -> int:
     pass
 
 
-def func_4(a: int, b: int, c: int, /, d: int = 3) -> int:
+def func_4(a, b, c, /, d=3) -> int:
     pass
 
 
-def func_5(a: int, *b: int, c: int = 3) -> int:
+def func_5(a, *b, c=3) -> int:
     pass
 
 
 class DummyClass:
-    def func_1(self, a: int, b: int, c: int) -> int:
+    def func_1(self, a, b, c) -> int:
         pass
 
-    def func_2(self, a: int, b: int, c: int, d: int) -> int:  # noqa: TUT610
-        pass
-
-    @classmethod
-    def func_3(cls, a: int, b: int, c: int) -> int:
+    def func_2(self, a, b, c, d) -> int:  # noqa: TUT610
         pass
 
     @classmethod
-    def func_4(cls, a: int, b: int, c: int, d: int) -> int:  # noqa: TUT610
+    def func_3(cls, a, b, c) -> int:
+        pass
+
+    @classmethod
+    def func_4(cls, a, b, c, d) -> int:  # noqa: TUT610
         pass
 
 
