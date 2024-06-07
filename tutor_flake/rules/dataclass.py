@@ -11,5 +11,5 @@ class DataclassRenamed:
             for name in node.names:
                 if name.name == "dataclass" and name.asname is not None:
                     yield Flake8Error.construct(
-                        node, "101", "Dataclass renamed on import", cls
+                        node, 101, "Dataclass renamed on import", cls
                     )

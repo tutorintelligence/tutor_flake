@@ -26,7 +26,7 @@ class NoFromTimeTimeImports:
         if node.module == "time" and any([name.name == "time" for name in node.names]):
             yield Flake8Error.construct(
                 node,
-                "810",
+                810,
                 "time.time() can jump and is not monotonic: are you sure it is what you want?",
                 cls,
             )

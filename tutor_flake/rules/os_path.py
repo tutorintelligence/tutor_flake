@@ -14,7 +14,7 @@ class NoOSPathAttrs:
         ):
             yield Flake8Error.construct(
                 attr,
-                "700",
+                700,
                 "OS Path must be replaced with pathlib. Remove all instances of os.path.<func>()",
                 cls,
             )
@@ -32,7 +32,7 @@ class NoFromOSPathImports:
         if import_func_from_os_path_cond or import_path_from_os_cond:
             yield Flake8Error.construct(
                 node,
-                "710",
+                710,
                 "OS Path must be replaced with pathlib. Do not import os.path!",
                 cls,
             )
@@ -44,7 +44,7 @@ class NoOSPathImports:
         if any(["os.path" in name.name for name in node.names]):
             yield Flake8Error.construct(
                 node,
-                "720",
+                720,
                 "OS Path must be replaced with pathlib. Do not import os.path!",
                 cls,
             )

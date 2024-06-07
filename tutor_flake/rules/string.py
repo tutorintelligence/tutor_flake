@@ -16,7 +16,7 @@ class NoBracketInString:
         ):
             yield Flake8Error.construct(
                 node,
-                "400",
+                400,
                 f"String `{msg}` contains brackets, likely meant to be an f-string",
                 cls,
             )

@@ -16,7 +16,7 @@ class CreateTaskRequireName:
             node, "name"
         ):
             yield Flake8Error.construct(
-                node, "200", "create_task function missing `name` keyword argument", cls
+                node, 200, "create_task function missing `name` keyword argument", cls
             )
 
 
@@ -28,7 +28,7 @@ class CreateTaskIsAssigned:
         ):
             yield Flake8Error.construct(
                 node,
-                "201",
+                201,
                 "create_task function not assigned to a value or await-ed",
                 cls,
             )
@@ -43,7 +43,7 @@ class AsyncFunctionsAreAsynchronous:
     def check(cls, node: ast.AsyncFunctionDef) -> Generator[Flake8Error, None, None]:
         if not cls.is_basic(node) and not cls.has_async(node):
             yield Flake8Error.construct(
-                node, "210", "Function does not need to be asynchronous", cls
+                node, 210, "Function does not need to be asynchronous", cls
             )
 
     @classmethod
@@ -110,7 +110,7 @@ class HandlersAreSafeForCancelledErrors:
         if is_node_async(statement) and not cls._is_timeout_async_call(statement):
             yield Flake8Error.construct(
                 statement,
-                "220",
+                220,
                 "Unsafe asynchronous call in a try or finally block",
                 cls,
             )
@@ -148,14 +148,14 @@ class CancelPassedMessage:
             elif total_arg_num == 0:
                 yield Flake8Error.construct(
                     invocation,
-                    "230",
+                    230,
                     "A call presumed to be `cancel` on an asyncio.Task was made without providing a message",
                     cls,
                 )
             elif len(args) == 1 and cls._is_parameter_None_literal(args[0]):
                 yield Flake8Error.construct(
                     invocation,
-                    "230",
+                    230,
                     "A call presumed to be `cancel` on an asyncio.Task was made with a `None` messsage",
                     cls,
                 )
@@ -166,7 +166,7 @@ class CancelPassedMessage:
             ):
                 yield Flake8Error.construct(
                     invocation,
-                    "230",
+                    230,
                     "A call presumed to be `cancel` on an asyncio.Task was made with a `None` messsage",
                     cls,
                 )

@@ -23,7 +23,7 @@ class NoTwoArgumentSuper:
             and check_any_parent(parents, ast.ClassDef)
         ):
             yield Flake8Error.construct(
-                call, "510", "Do not use two argument super within a class", cls
+                call, 510, "Do not use two argument super within a class", cls
             )
 
 
@@ -107,7 +107,7 @@ class ChildClassCallsSuperMethods:
                 else:
                     yield Flake8Error.construct(
                         func,
-                        str(rule_number),
+                        rule_number,
                         f"{function_name} function did not call super().{function_name}",
                         cls,
                     )
