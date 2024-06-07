@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.24.0 (2024-06-07)
+### Feature
+* Prevent consecutive same typed positional arguments ([#17](https://github.com/tutorintelligence/tutor_flake/issues/17)) ([`53d152e`](https://github.com/tutorintelligence/tutor_flake/commit/53d152e29865a265cb8dc62938283d4ea3a1a861))
+
 ## v0.23.1 (2024-06-07)
 ### Fix
 * Max positional args in async function def ([#16](https://github.com/tutorintelligence/tutor_flake/issues/16)) ([`21c83d8`](https://github.com/tutorintelligence/tutor_flake/commit/21c83d8cbbac8411eb9a66f35548f86321c0d1eb))
