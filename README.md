@@ -38,7 +38,12 @@ Custom flake8 rules
         * TypedDict
         * pydantic BaseModel and pydantic-numpy NumpyModel
     * TUT510 - No two argument `super` within a class
-    * TUT511 - A child class must call a parent classes method for `__init__` and `__post_init__`
+    * TUT511 - A child class must call a parent classes method for `__init__`
+        * Skips if inherited from certain classes: `Generic`, `collections.abc`, `ABC`, `Protocol`
+        * Additional classes to skip are configurable with `non-init-classes`
+    * TUT512 - A child class must call a parent classes method for `__post_init__`
+        * All the same exceptions as 511
+
     * TUT520 - `NotImplemented` is only allowed within a dunder method on a class
         * Any other usage is very likely incorrect
 * TUT6
@@ -62,6 +67,8 @@ Custom flake8 rules
 * Should we also forbid `os.walk`
 * Fixtures must end in `_fixt`
 * Constants must be uppercase
+* Empty `if` blocks should be disallowed
+    * Motivated by empty `if TYPE_CHECKING`
 
 ## Installation and Configuration
 

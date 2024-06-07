@@ -27,8 +27,10 @@ class NoTwoArgumentSuper:
             )
 
 
-def get_real_bases(class_def: ast.ClassDef) -> List[ast.expr]:
-    names = ("Generic", "ABC", "Protocol", "abc")
+def get_real_bases(
+    class_def: ast.ClassDef, *, additional_excluded_classes: List[str]
+) -> List[ast.expr]:
+    names = ("Generic", "ABC", "Protocol", "abc") + tuple(additional_excluded_classes)
 
     return [
         base
@@ -46,14 +48,32 @@ def get_real_bases(class_def: ast.ClassDef) -> List[ast.expr]:
 class ChildClassCallsSuperMethods:
     @classmethod
     def check(
-        cls, func: ast.FunctionDef, parents: List[ast.AST]
+        cls, func: ast.FunctionDef, parents: List[ast.AST], non_init_classes: List[str]
     ) -> Generator[Flake8Error, None, None]:
-        yield from cls.test_method_calls_parent_method(func, parents, "__init__")
-        yield from cls.test_method_calls_parent_method(func, parents, "__post_init__")
+        yield from cls.test_method_calls_parent_method(
+            func,
+            parents,
+            "__init__",
+            rule_number=511,
+            non_init_classes=non_init_classes,
+        )
+        yield from cls.test_method_calls_parent_method(
+            func,
+            parents,
+            "__post_init__",
+            rule_number=512,
+            non_init_classes=non_init_classes,
+        )
 
     @classmethod
     def test_method_calls_parent_method(
-        cls, func: ast.FunctionDef, parents: List[ast.AST], function_name: str
+        cls,
+        func: ast.FunctionDef,
+        parents: List[ast.AST],
+        function_name: str,
+        *,
+        rule_number: int,
+        non_init_classes: List[str],
     ) -> Generator[Flake8Error, None, None]:
         if func.name == function_name:
             class_definition = next(
@@ -66,7 +86,12 @@ class ChildClassCallsSuperMethods:
             )
             if (
                 class_definition is not None
-                and len(get_real_bases(class_definition)) > 0
+                and len(
+                    get_real_bases(
+                        class_definition, additional_excluded_classes=non_init_classes
+                    )
+                )
+                > 0
             ):
                 for statement in func.body:
                     if (
@@ -82,7 +107,7 @@ class ChildClassCallsSuperMethods:
                 else:
                     yield Flake8Error.construct(
                         func,
-                        "511",
+                        str(rule_number),
                         f"{function_name} function did not call super().{function_name}",
                         cls,
                     )
