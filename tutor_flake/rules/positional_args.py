@@ -53,3 +53,9 @@ class MaxPositionalArgsInInvocation:
                 f" a max of {max_positional} is permitted",
                 cls,
             )
+
+
+class ConsecutiveSameTypedPositionalArgs:
+    @classmethod
+    def check(cls, func: ast.FunctionDef) -> Generator[Flake8Error, None, None]:
+        ...
