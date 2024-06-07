@@ -7,7 +7,7 @@ from tutor_flake.common import Flake8Error
 class MaxPostionalArgsInFunctionDef:
     @classmethod
     def check(
-        cls, func: ast.FunctionDef, max_positional: int
+        cls, func: ast.FunctionDef | ast.AsyncFunctionDef, max_positional: int
     ) -> Generator[Flake8Error, None, None]:
         num_pos_only = len(func.args.posonlyargs)
         num_args = len(func.args.args)
@@ -32,7 +32,7 @@ class MaxPostionalArgsInFunctionDef:
         return arg.arg in ("self", "cls")
 
     @staticmethod
-    def first_arg(func: ast.FunctionDef) -> Optional[ast.arg]:
+    def first_arg(func: ast.FunctionDef | ast.AsyncFunctionDef) -> Optional[ast.arg]:
         if len(func.args.posonlyargs) > 0:
             return func.args.posonlyargs[0]
         elif len(func.args.args) > 0:

@@ -2,6 +2,10 @@ def func_1(a: int, b: int, c: int, d: int, e: int = 3) -> int:  # noqa: TUT610
     pass
 
 
+async def afunc_1(a: int, b: int, c: int, d: int, e: int = 3) -> int:  # noqa: TUT610
+    pass
+
+
 def func_2(a: int, b: int, c: int, *, d: int) -> int:
     pass
 
@@ -39,3 +43,7 @@ b = func_1(0, 1, 2, 3, e=5)
 d = func_5(0)
 e = func_5(0, 1, 2, 3, c=4)
 f = func_5(0, 1, 2, 3, 4)  # noqa: TUT620
+
+
+async def g() -> None:
+    await afunc_1(0, 1, 2, 3, 4)  # noqa: TUT620

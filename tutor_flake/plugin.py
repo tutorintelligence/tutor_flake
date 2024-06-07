@@ -202,7 +202,12 @@ class CustomVisitor(ast.NodeVisitor):
     def visit_AsyncFunctionDef(
         self, node: ast.AsyncFunctionDef
     ) -> Iterable[Flake8Error]:
-        return AsyncFunctionsAreAsynchronous.check(node)
+        return itertools.chain(
+            MaxPostionalArgsInFunctionDef.check(
+                node, self.config.max_definition_positional_args
+            ),
+            AsyncFunctionsAreAsynchronous.check(node),
+        )
 
     @visitor_decorator
     def visit_ExceptHandler(self, node: ast.ExceptHandler) -> Iterable[Flake8Error]:
