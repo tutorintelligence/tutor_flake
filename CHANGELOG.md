@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.25.0 (2024-06-13)
+### Feature
+* Skip more collections ([#18](https://github.com/tutorintelligence/tutor_flake/issues/18)) ([`0d1abb0`](https://github.com/tutorintelligence/tutor_flake/commit/0d1abb0bb3da75d04df32099c6b9f86af3c94dde))
+
 ## v0.24.0 (2024-06-07)
 ### Feature
 * Prevent consecutive same typed positional arguments ([#17](https://github.com/tutorintelligence/tutor_flake/issues/17)) ([`53d152e`](https://github.com/tutorintelligence/tutor_flake/commit/53d152e29865a265cb8dc62938283d4ea3a1a861))
