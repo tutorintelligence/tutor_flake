@@ -30,7 +30,15 @@ class NoTwoArgumentSuper:
 def get_real_bases(
     class_def: ast.ClassDef, *, additional_excluded_classes: List[str]
 ) -> List[ast.expr]:
-    names = ("Generic", "ABC", "Protocol", "abc") + tuple(additional_excluded_classes)
+    collections_classes = (
+        "abc",
+        "Awaitable",
+    )  # TODO: we can add to this list as need serves
+    names = (
+        ("Generic", "ABC", "Protocol")
+        + collections_classes
+        + tuple(additional_excluded_classes)
+    )
 
     return [
         base

@@ -39,7 +39,7 @@ Custom flake8 rules
         * pydantic BaseModel and pydantic-numpy NumpyModel
     * TUT510 - No two argument `super` within a class
     * TUT511 - A child class must call a parent classes method for `__init__`
-        * Skips if inherited from certain classes: `Generic`, `collections.abc`, `ABC`, `Protocol`
+        * Skips if inherited from certain classes: `Generic`, `ABC`, `Protocol`, `collections.abc` and specific defined subclasses
         * Additional classes to skip are configurable with `non-init-classes`
     * TUT512 - A child class must call a parent classes method for `__post_init__`
         * All the same exceptions as 511
