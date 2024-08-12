@@ -55,8 +55,8 @@ class AsyncFunctionsAreAsynchronous:
             second_line = node.body[1]
             return cls.is_basic_node(second_line) and (
                 isinstance(first_line, ast.Expr)
-                and isinstance(first_line.value, ast.Constant)
-                and first_line.value.value == ast.get_docstring(node, clean=False)
+                and isinstance(val := first_line.value, ast.Constant)
+                and val.value == ast.get_docstring(node, clean=False)
             )
 
     @classmethod
