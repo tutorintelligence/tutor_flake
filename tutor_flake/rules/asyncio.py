@@ -49,13 +49,25 @@ class AsyncFunctionsAreAsynchronous:
     @classmethod
     def is_basic(cls, node: ast.AsyncFunctionDef) -> bool:
         first_line = node.body[0]
-        return (
-            isinstance(first_line, ast.Raise)
-            or isinstance(first_line, ast.Pass)
-            or isinstance(first_line, ast.Return)
-            or (
+        if len(node.body) == 1:
+            return cls.is_basic_node(first_line)
+        else:
+            second_line = node.body[1]
+            return cls.is_basic_node(second_line) and (
                 isinstance(first_line, ast.Expr)
                 and isinstance(val := first_line.value, ast.Constant)
+                and val.value == ast.get_docstring(node, clean=False)
+            )
+
+    @classmethod
+    def is_basic_node(cls, statement: ast.stmt) -> bool:
+        return (
+            isinstance(statement, ast.Raise)
+            or isinstance(statement, ast.Pass)
+            or isinstance(statement, ast.Return)
+            or (
+                isinstance(statement, ast.Expr)
+                and isinstance(val := statement.value, ast.Constant)
                 and (val.value == Ellipsis)
             )
         )

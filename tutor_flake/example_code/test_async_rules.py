@@ -53,6 +53,42 @@ async def immediate_return() -> Any:
     return 0
 
 
+async def raise_error_with_docstring() -> Any:
+    """
+    This is a docstring
+
+    Returns: Nothing
+    """
+    raise NotImplementedError()
+
+
+async def use_pass_with_docstring() -> Any:
+    """
+    This is a docstring
+
+    Returns: Nothing
+    """
+    pass
+
+
+async def use_dot_dot_dot_with_docstring() -> Any:
+    """
+    This is a docstring
+
+    Returns: Nothing
+    """
+    ...
+
+
+async def immediate_return_with_docstring() -> Any:
+    """
+    This is a docstring
+
+    Returns: Nothing
+    """
+    return 0
+
+
 async def no_await() -> Any:  # noqa: TUT210
     x = 4
     y = x + 3
