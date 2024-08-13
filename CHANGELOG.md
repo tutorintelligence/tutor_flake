@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.25.1 (2024-08-13)
+### Fix
+* Allow for function which have docstrings, but are also basic. ([#19](https://github.com/tutorintelligence/tutor_flake/issues/19)) ([`bab85cc`](https://github.com/tutorintelligence/tutor_flake/commit/bab85cce37c4257db3090bfe1410a7433d6ed0f8))
+
 ## v0.25.0 (2024-06-13)
 ### Feature
 * Skip more collections ([#18](https://github.com/tutorintelligence/tutor_flake/issues/18)) ([`0d1abb0`](https://github.com/tutorintelligence/tutor_flake/commit/0d1abb0bb3da75d04df32099c6b9f86af3c94dde))
