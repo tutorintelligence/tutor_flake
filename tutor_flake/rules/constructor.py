@@ -38,7 +38,7 @@ class ConstructorIsWellTyped:
                 530,
                 f"Funciton `{func.name}`'s return value includes the class type: `{class_name}`."
                 " Likely you want to return the Self type imported from `typing` or `typing_extensions`"
-                " as child types would likely expect to return their own type.",
+                " as child types likely should return their own type.",
                 cls,
             )
 
