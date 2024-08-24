@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.26.0 (2024-08-24)
+### Feature
+* Add rule enforces Self types on constructors ([#20](https://github.com/tutorintelligence/tutor_flake/issues/20)) ([`9f7d044`](https://github.com/tutorintelligence/tutor_flake/commit/9f7d044f8dd3c752f8d430e2e93a6ecfef3f85be))
+
 ## v0.25.1 (2024-08-13)
 ### Fix
 * Allow for function which have docstrings, but are also basic. ([#19](https://github.com/tutorintelligence/tutor_flake/issues/19)) ([`bab85cc`](https://github.com/tutorintelligence/tutor_flake/commit/bab85cce37c4257db3090bfe1410a7433d6ed0f8))
