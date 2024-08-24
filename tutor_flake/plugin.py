@@ -8,6 +8,7 @@ from functools import wraps
 from typing import Any, Callable, ClassVar, Generator, Iterable, List, Optional, TypeVar
 
 from flake8.options.manager import OptionManager
+from typing_extensions import Self
 
 from tutor_flake import __version__
 from tutor_flake.common import Flake8Error
@@ -20,6 +21,7 @@ from tutor_flake.rules.asyncio import (
 )
 from tutor_flake.rules.classvar import ClassvarCheck
 from tutor_flake.rules.compact_generic import CompactGeneric
+from tutor_flake.rules.constructor import ConstructorIsWellTyped
 from tutor_flake.rules.dataclass import DataclassRenamed
 from tutor_flake.rules.no_sideeffects import NoSideeffects
 from tutor_flake.rules.not_implemented import NotImplementedCheck
@@ -75,8 +77,8 @@ class TutorFlakeConfig:
         )
 
     @classmethod
-    def parse_options(cls, options: Namespace) -> "TutorFlakeConfig":
-        return TutorFlakeConfig(
+    def parse_options(cls, options: Namespace) -> Self:
+        return cls(
             options.max_definition_positional_args,
             options.max_invocation_positional_args,
             options.non_init_classes,
@@ -187,6 +189,7 @@ class CustomVisitor(ast.NodeVisitor):
             ChildClassCallsSuperMethods.check(
                 node, self.parents, self.config.non_init_classes
             ),
+            ConstructorIsWellTyped.check(node, self.parents),
         )
 
     @visitor_decorator
@@ -210,6 +213,7 @@ class CustomVisitor(ast.NodeVisitor):
             ),
             ConsecutiveSameTypedPositionalArgs.check(node),
             AsyncFunctionsAreAsynchronous.check(node),
+            ConstructorIsWellTyped.check(node, self.parents),
         )
 
     @visitor_decorator

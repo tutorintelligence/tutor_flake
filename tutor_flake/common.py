@@ -1,6 +1,8 @@
 import ast
 from typing import List, NamedTuple, Optional, Type, Union
 
+from typing_extensions import Self
+
 
 class Flake8Error(NamedTuple):
     line_number: int
@@ -15,9 +17,12 @@ class Flake8Error(NamedTuple):
         code: int,
         description: str,
         rule_cls: type,
-    ) -> "Flake8Error":
-        return Flake8Error(
-            node.lineno, node.col_offset, f"TUT{code} {description}", rule_cls
+    ) -> Self:
+        return cls(
+            node.lineno,  # type: ignore
+            node.col_offset,  # type: ignore
+            f"TUT{code} {description}",
+            rule_cls,
         )
 
 
