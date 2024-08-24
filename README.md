@@ -21,6 +21,7 @@ Custom flake8 rules
 * TUT300 - no expressions in the main body, unless under __name__ == "__main__", prevents global side effects
 * TUT4:
     * TUT400 - detect strings that were likely meant to be f-strings
+        * TODO: we should exclude regex-es
     * TUT410 - detect redundant type annotations
     * TUT411 - detect redundant type annotations for generic assignment
         * Don't do `x: Foo[bar] = Foo()` ; do `x = Foo[bar]()`
@@ -45,6 +46,9 @@ Custom flake8 rules
         * All the same exceptions as 511
     * TUT520 - `NotImplemented` is only allowed within a dunder method on a class
         * Any other usage is very likely incorrect
+    * TUT530 - a constructor must return `Self` type rather than the class type
+        * This encourages good use of constructors that play well with inheritence
+        * We detect methods whose return type includes the class type without having any input of the type
 * TUT6
     * TUT610 - a function definition allows too many positional arguments (configurable with `max-definition-positional-args`)
     * TUT620 - a function invocation uses too many positional arguments (configurable with `max-invocation-positional-args`)

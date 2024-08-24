@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import ClassVar, Final, List, NamedTuple, Protocol, TypeVar
 
+from typing_extensions import Self
+
 
 class DummyClass:
 
@@ -63,7 +65,7 @@ class ExampleDataclass:
         return super().__str__()
 
     @classmethod
-    def construct(cls) -> "ExampleDataclass":
+    def construct(cls) -> Self:
         raise NotImplementedError
 
     # other inline comment
