@@ -22,7 +22,11 @@ class ClassvarCheck:
                         yield Flake8Error.construct(
                             child,
                             501,
-                            f"Class variable `{target.id}` instantiated after methods",  # type: ignore
+                            (
+                                f"Class variable `{target.id}` instantiated after methods"  # type: ignore
+                                if not isinstance(target, ast.Attribute)
+                                else "Class variable instantiated after methods"
+                            ),
                             cls,
                         )
                 if not cls.is_class_exempt_from_type_annotations(
