@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.26.2 (2024-11-10)
+### Fix
+* Handle attribute error in more cases ([`469852a`](https://github.com/tutorintelligence/tutor_flake/commit/469852a1e79b6954c99b1e84d907f990ba187bcf))
+
 ## v0.26.1 (2024-11-10)
 ### Fix
 * Handle attribute error ([`b6b0632`](https://github.com/tutorintelligence/tutor_flake/commit/b6b063218ef495549686bd23846fe996609847cb))
