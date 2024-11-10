@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.26.1 (2024-11-10)
+### Fix
+* Handle attribute error ([`b6b0632`](https://github.com/tutorintelligence/tutor_flake/commit/b6b063218ef495549686bd23846fe996609847cb))
+
 ## v0.26.0 (2024-08-24)
 ### Feature
 * Add rule enforces Self types on constructors ([#20](https://github.com/tutorintelligence/tutor_flake/issues/20)) ([`9f7d044`](https://github.com/tutorintelligence/tutor_flake/commit/9f7d044f8dd3c752f8d430e2e93a6ecfef3f85be))
