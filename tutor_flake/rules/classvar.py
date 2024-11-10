@@ -19,12 +19,13 @@ class ClassvarCheck:
             if isinstance(child, (ast.AnnAssign, ast.Assign)):
                 for target in get_targets(child):
                     if function_seen:
+                        target_id = getattr(target, "id", None)
                         yield Flake8Error.construct(
                             child,
                             501,
                             (
-                                f"Class variable `{target.id}` instantiated after methods"  # type: ignore
-                                if not isinstance(target, ast.Attribute)
+                                f"Class variable `{target_id}` instantiated after methods"
+                                if target_id is not None
                                 else "Class variable instantiated after methods"
                             ),
                             cls,
