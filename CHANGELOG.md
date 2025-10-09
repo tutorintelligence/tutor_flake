@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.27.0 (2025-10-09)
+### Feature
+* Support later python versions ([#21](https://github.com/tutorintelligence/tutor_flake/issues/21)) ([`ac45522`](https://github.com/tutorintelligence/tutor_flake/commit/ac4552245ce731348f2f81201fb74c2ae9e5536d))
+
 ## v0.26.2 (2024-11-10)
 ### Fix
 * Handle attribute error in more cases ([`469852a`](https://github.com/tutorintelligence/tutor_flake/commit/469852a1e79b6954c99b1e84d907f990ba187bcf))
